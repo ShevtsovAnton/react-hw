@@ -1,11 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactComp from './components/ReactComp';
+import FunctionalComp from './components/FunctionalComp';
+import FunctionalCompArrow from './components/FunctionalCompArrow';
+import PureComp from './components/PureComp';
+import CreateElement from './components/CreateElement';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div>
+      <CreateElement />
+      <ReactComp />
+      <PureComp />
+      <FunctionalComp />
+      < FunctionalCompArrow />
     </div>
   );
 }
