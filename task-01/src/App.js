@@ -12,7 +12,7 @@ function App() {
       <ReactComp />
       <PureComp />
       <FunctionalComp />
-      < FunctionalCompArrow />
+      <FunctionalCompArrow />
     </div>
   );
 }
