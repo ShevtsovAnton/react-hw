@@ -82,6 +82,7 @@ const config = env => ({
     contentBase: './dist',
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
     }),
