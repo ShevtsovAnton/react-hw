@@ -5,14 +5,14 @@ module.exports = {
       {
         modules: false,
         useBuiltIns: 'entry',
-        corejs: '3.6',
-      },
+        corejs: '3.6'
+      }
     ],
-    '@babel/preset-react',
+    '@babel/preset-react'
   ],
   plugins: [
     'react-hot-loader/babel',
     '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-syntax-dynamic-import',
-  ],
+    '@babel/plugin-syntax-dynamic-import'
+  ]
 };
