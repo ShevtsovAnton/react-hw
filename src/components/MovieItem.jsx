@@ -37,14 +37,14 @@ const useStyles = makeStyles(theme => ({
     display: 'none'
   },
   iconButton: {
-    backgroundColor: '#232323'
+    backgroundColor: theme.palette.info.main
   },
   titleAndYear: {
     display: 'flex',
     justifyContent: 'space-between'
   },
   releaseYear: {
-    border: '1px solid white',
+    border: `1px solid ${theme.palette.text.primary}`,
     borderRadius: 5,
     paddingRight: 10,
     paddingLeft: 10,

@@ -10,7 +10,7 @@ import FindMovie from '../components/FindMovie';
 
 const useStyles = makeStyles(theme => ({
   headerContainer: {
-    backgroundColor: '#232323',
+    backgroundColor: theme.palette.info.main,
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(18),
     paddingLeft: theme.spacing(7),

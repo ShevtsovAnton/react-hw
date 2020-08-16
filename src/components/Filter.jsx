@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: 'inherit'
       },
       '&.selectedFilter': {
-        borderBottom: '2px solid #F65261',
+        borderBottom: `2px solid ${theme.palette.primary.main}`,
         marginBottom: '-2px'
       }
     }

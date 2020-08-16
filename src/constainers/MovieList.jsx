@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(7),
     paddingRight: theme.spacing(7),
     marginTop: theme.spacing(2),
-    backgroundColor: '#232323'
+    backgroundColor: theme.palette.info.main
   },
   controlGrid: {
-    borderBottom: '2px solid #555555'
+    borderBottom: `2px solid ${theme.palette.text.secondary}`
   },
   found: {
     marginBottom: theme.spacing(3),
