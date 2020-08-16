@@ -1,4 +1,4 @@
-const movies = [
+const moviesList = [
   {
     id: 605116,
     video: false,
@@ -26,7 +26,7 @@ const movies = [
     vote_count: 1145,
     vote_average: 8.5,
     first_airDate: '2019-02-15',
-    releaseDate: '2020-06-19',
+    releaseDate: '2009-06-19',
     posterPath: '/scZlQQYnDVlnpxFTxaIv2g0BWnL.jpg',
     genre_ids: [35, 18, 10759, 10765],
     genres: ['Thriller', 'Action'],
@@ -44,7 +44,7 @@ const movies = [
     vote_count: 75,
     vote_average: 7.5,
     title: 'The Secret Garden',
-    releaseDate: '2020-07-08',
+    releaseDate: '2005-07-08',
     original_language: 'en',
     original_title: 'The Secret Garden',
     genre_ids: [18, 14, 10751],
@@ -63,7 +63,7 @@ const movies = [
     vote_count: 898,
     vote_average: 7.5,
     title: 'Greyhound',
-    releaseDate: '2020-06-19',
+    releaseDate: '2003-06-19',
     original_language: 'en',
     original_title: 'Greyhound',
     genre_ids: [28, 18, 10752],
@@ -82,7 +82,7 @@ const movies = [
     vote_count: 168,
     vote_average: 6.5,
     title: 'Deep Blue Sea 3',
-    releaseDate: '2020-07-28',
+    releaseDate: '2010-07-28',
     original_language: 'en',
     original_title: 'Deep Blue Sea 3',
     genre_ids: [28, 27, 878],
@@ -101,7 +101,7 @@ const movies = [
     vote_count: 78,
     vote_average: 6.9,
     title: 'Deathstroke: Knights & Dragons',
-    releaseDate: '2020-08-04',
+    releaseDate: '2016-08-04',
     original_language: 'en',
     original_title: 'Deathstroke: Knights & Dragons',
     genre_ids: [28, 16],
@@ -120,7 +120,7 @@ const movies = [
     vote_count: 3036,
     vote_average: 8.1,
     title: 'The Kissing Booth 2',
-    releaseDate: '2020-07-24',
+    releaseDate: '2017-07-24',
     original_language: 'en',
     original_title: 'The Kissing Booth 2',
     genre_ids: [35, 10749],
@@ -139,7 +139,7 @@ const movies = [
     vote_count: 409,
     vote_average: 7.6,
     title: 'Scoob!',
-    releaseDate: '2020-07-08',
+    releaseDate: '2018-07-08',
     original_language: 'en',
     original_title: 'Scoob!',
     genre_ids: [12, 16, 35, 10751],
@@ -158,7 +158,7 @@ const movies = [
     vote_count: 1660,
     vote_average: 7.4,
     title: 'The Old Guard',
-    releaseDate: '2020-07-10',
+    releaseDate: '2019-07-10',
     original_language: 'en',
     original_title: 'The Old Guard',
     genre_ids: [28, 14],
@@ -192,4 +192,4 @@ const movies = [
   }
 ];
 
-export default movies;
+export default moviesList;
