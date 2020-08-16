@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -23,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Header() {
+function Header({ handleSearch }) {
   const classes = useStyles();
   return (
     <Container className={classes.headerContainer} maxWidth="lg">
@@ -40,10 +41,14 @@ function Header() {
         </Button>
       </Grid>
       <Grid container className={classes.searchContainer}>
-        <FindMovie />
+        <FindMovie handleSearch={handleSearch} />
       </Grid>
     </Container>
   );
 }
 
 export default Header;
+
+Header.propTypes = {
+  handleSearch: PropTypes.func.isRequired
+};

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,17 +23,34 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Filter() {
+const filters = ['all', 'documentary', 'comedy', 'horror', 'crime'];
+
+function Filter({ handleFilterEvent }) {
   const classes = useStyles();
+  const [activeFilter, setActiveFilter] = useState('all');
+  const handleFilterChange = e => {
+    const filter = e.currentTarget.value;
+    setActiveFilter(filter);
+    handleFilterEvent(filter);
+  };
   return (
-    <ButtonGroup className={classes.buttonGroup} size="large" aria-label="large button group">
-      <Button className="selectedFilter">All</Button>
-      <Button>DOCUMENTARY</Button>
-      <Button>COMEDY</Button>
-      <Button>HORROR</Button>
-      <Button>CRIME</Button>
+    <ButtonGroup className={classes.buttonGroup} size="large">
+      {filters.map(filter => (
+        <Button
+          key={filter}
+          value={filter}
+          className={activeFilter === filter ? 'selectedFilter' : ''}
+          onClick={handleFilterChange}
+        >
+          {filter.toUpperCase()}
+        </Button>
+      ))}
     </ButtonGroup>
   );
 }
 
 export default Filter;
+
+Filter.propTypes = {
+  handleFilterEvent: PropTypes.func.isRequired
+};

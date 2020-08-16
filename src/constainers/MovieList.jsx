@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function MovieList({ movies, handleSortEvent }) {
+export default function MovieList({ movies, handleSortEvent, handleFilterEvent }) {
   const classes = useStyles();
   const countMessage = `${movies.length || 'No'} movie${movies.length === 1 ? '' : 's'} found`;
 
@@ -35,7 +35,7 @@ export default function MovieList({ movies, handleSortEvent }) {
     <>
       <Container className={classes.main} maxWidth="lg">
         <Grid className={classes.controlGrid} container justify="space-between">
-          <Filter />
+          <Filter handleFilterEvent={handleFilterEvent} />
           <Sort handleSortEvent={handleSortEvent} />
         </Grid>
         <Typography variant="h6" className={classes.found}>
@@ -62,5 +62,6 @@ MovieList.propTypes = {
       backdropPath: PropTypes.string.isRequired
     })
   ).isRequired,
-  handleSortEvent: PropTypes.func.isRequired
+  handleSortEvent: PropTypes.func.isRequired,
+  handleFilterEvent: PropTypes.func.isRequired
 };

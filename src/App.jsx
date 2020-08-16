@@ -49,14 +49,39 @@ function App() {
     ];
     setMovies(sortedMovies);
   };
+  const handleSearch = query => {
+    if (query.trim() === '') {
+      setMovies(moviesList);
+      return;
+    }
+    const searchResults = moviesList.filter(movie =>
+      movie.title.toUpperCase().includes(query.trim().toUpperCase())
+    );
+    setMovies(searchResults);
+  };
+  const handleFilterEvent = filter => {
+    if (filter === 'all') {
+      setMovies(moviesList);
+      return;
+    }
+    const filteredList = moviesList.filter(movie => {
+      const formatedGenres = movie.genres.map(genre => genre.toUpperCase());
+      return formatedGenres.includes(filter.toUpperCase());
+    });
+    setMovies(filteredList);
+  };
 
   return (
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ErrorBoundary>
-          <Header />
-          <MovieList movies={movies} handleSortEvent={handleSortEvent} />
+          <Header handleSearch={handleSearch} />
+          <MovieList
+            movies={movies}
+            handleSortEvent={handleSortEvent}
+            handleFilterEvent={handleFilterEvent}
+          />
           <Footer />
         </ErrorBoundary>
       </ThemeProvider>
