@@ -22,13 +22,13 @@ const useStyles = makeStyles({
   }
 });
 
-function Sort({ handleSortEvent }) {
+function Sort({ handleSort }) {
   const classes = useStyles();
   const [sortBy, setSortBy] = useState('releaseDate');
-  const handleSortChange = e => {
+  const sort = e => {
     const { value } = e.target;
     setSortBy(value);
-    handleSortEvent(value);
+    handleSort(value);
   };
 
   return (
@@ -42,7 +42,7 @@ function Sort({ handleSortEvent }) {
           value={sortBy}
           className={classes.select}
           displayEmpty
-          onChange={handleSortChange}
+          onChange={sort}
         >
           <MenuItem value="releaseDate">RELEASE DATE</MenuItem>
           <MenuItem value="title">TITLE</MenuItem>
@@ -53,7 +53,7 @@ function Sort({ handleSortEvent }) {
 }
 
 Sort.propTypes = {
-  handleSortEvent: PropTypes.func.isRequired
+  handleSort: PropTypes.func.isRequired
 };
 
 export default Sort;

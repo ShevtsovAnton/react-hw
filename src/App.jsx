@@ -33,7 +33,7 @@ const theme = createMuiTheme({
 
 function App() {
   const [movies, setMovies] = useState(moviesList);
-  const handleSortEvent = sortBy => {
+  const handleSort = sortBy => {
     const sortedMovies = [
       ...movies.sort((a, b) => {
         const valueA = a[sortBy].toUpperCase();
@@ -59,7 +59,7 @@ function App() {
     );
     setMovies(searchResults);
   };
-  const handleFilterEvent = filter => {
+  const handleFilter = filter => {
     if (filter === 'all') {
       setMovies(moviesList);
       return;
@@ -77,11 +77,7 @@ function App() {
         <CssBaseline />
         <ErrorBoundary>
           <Header handleSearch={handleSearch} />
-          <MovieList
-            movies={movies}
-            handleSortEvent={handleSortEvent}
-            handleFilterEvent={handleFilterEvent}
-          />
+          <MovieList movies={movies} handleSort={handleSort} handleFilter={handleFilter} />
           <Footer />
         </ErrorBoundary>
       </ThemeProvider>

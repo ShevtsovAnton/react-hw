@@ -25,22 +25,22 @@ const useStyles = makeStyles(theme => ({
 
 const filters = ['all', 'documentary', 'comedy', 'horror', 'crime'];
 
-function Filter({ handleFilterEvent }) {
+function Filter({ handleFilter }) {
   const classes = useStyles();
   const [activeFilter, setActiveFilter] = useState('all');
-  const handleFilterChange = e => {
-    const filter = e.currentTarget.value;
-    setActiveFilter(filter);
-    handleFilterEvent(filter);
+  const filter = e => {
+    const filterValue = e.currentTarget.value;
+    setActiveFilter(filterValue);
+    handleFilter(filterValue);
   };
   return (
     <ButtonGroup className={classes.buttonGroup} size="large">
-      {filters.map(filter => (
+      {filters.map(filterItem => (
         <Button
-          key={filter}
-          value={filter}
-          className={activeFilter === filter ? 'selectedFilter' : ''}
-          onClick={handleFilterChange}
+          key={filterItem}
+          value={filterItem}
+          className={activeFilter === filterItem ? 'selectedFilter' : ''}
+          onClick={filter}
         >
           {filter.toUpperCase()}
         </Button>
@@ -52,5 +52,5 @@ function Filter({ handleFilterEvent }) {
 export default Filter;
 
 Filter.propTypes = {
-  handleFilterEvent: PropTypes.func.isRequired
+  handleFilter: PropTypes.func.isRequired
 };
