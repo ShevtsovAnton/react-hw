@@ -19,6 +19,11 @@ export default function FindMovie({ handleSearch }) {
     handleSearch(query);
     setQuery('');
   };
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      search();
+    }
+  };
 
   return (
     <>
@@ -33,10 +38,11 @@ export default function FindMovie({ handleSearch }) {
         <Grid item xs={9}>
           <TextField
             value={query}
-            onChange={e => setQuery(e.target.value)}
             fullWidth
             id="standard-basic"
             label="What do you want to watch?"
+            onChange={e => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         </Grid>
         <Grid item xs={3}>
