@@ -9,7 +9,7 @@ const moviesList = [
     original_language: 'en',
     original_title: 'Project Power',
     genre_ids: [28, 80, 878],
-    genres: ['Thriller', 'Action'],
+    genres: ['Thriller', 'Action', 'Horror'],
     backdropPath: '/qVygtf2vU15L2yKS4Ke44U4oMdD.jpg',
     adult: false,
     overview:
@@ -29,7 +29,7 @@ const moviesList = [
     releaseDate: '2009-06-19',
     posterPath: '/scZlQQYnDVlnpxFTxaIv2g0BWnL.jpg',
     genre_ids: [35, 18, 10759, 10765],
-    genres: ['Thriller', 'Action'],
+    genres: ['Thriller', 'Action', 'Crime'],
     original_language: 'en',
     backdropPath: '/qJxzjUjCpTPvDHldNnlbRC4OqEh.jpg',
     overview:
@@ -48,7 +48,7 @@ const moviesList = [
     original_language: 'en',
     original_title: 'The Secret Garden',
     genre_ids: [18, 14, 10751],
-    genres: ['Thriller', 'Action'],
+    genres: ['Thriller', 'Action', 'Documentary'],
     backdropPath: '/8PK4X8U3C79ilzIjNTkTgjmc4js.jpg',
     adult: false,
     overview:
@@ -67,7 +67,7 @@ const moviesList = [
     original_language: 'en',
     original_title: 'Greyhound',
     genre_ids: [28, 18, 10752],
-    genres: ['Thriller', 'Action'],
+    genres: ['Thriller', 'Action', 'Crime'],
     backdropPath: '/xXBnM6uSTk6qqCf0SRZKXcga9Ba.jpg',
     adult: false,
     overview:
@@ -86,7 +86,7 @@ const moviesList = [
     original_language: 'en',
     original_title: 'Deep Blue Sea 3',
     genre_ids: [28, 27, 878],
-    genres: ['Thriller', 'Action'],
+    genres: ['Thriller', 'Action', 'Comedy'],
     backdropPath: '/hIHtyIYgBqHybOgUdoAmveipuiO.jpg',
     adult: false,
     overview:
@@ -124,7 +124,7 @@ const moviesList = [
     original_language: 'en',
     original_title: 'The Kissing Booth 2',
     genre_ids: [35, 10749],
-    genres: ['Thriller', 'Action'],
+    genres: ['Thriller', 'Action', 'Comedy'],
     backdropPath: '/wO5QSWZPBT71gMLvrRex0bVc0V9.jpg',
     adult: false,
     overview:
@@ -143,7 +143,7 @@ const moviesList = [
     original_language: 'en',
     original_title: 'Scoob!',
     genre_ids: [12, 16, 35, 10751],
-    genres: ['Thriller', 'Action'],
+    genres: ['Horror', 'Comedy', 'Documentary'],
     backdropPath: '/fKtYXUhX5fxMxzQfyUcQW9Shik6.jpg',
     adult: false,
     overview:
@@ -162,7 +162,7 @@ const moviesList = [
     original_language: 'en',
     original_title: 'The Old Guard',
     genre_ids: [28, 14],
-    genres: ['Thriller', 'Action'],
+    genres: ['Thriller', 'Action', 'Comedy'],
     backdropPath: '/m0ObOaJBerZ3Unc74l471ar8Iiy.jpg',
     adult: false,
     overview:
