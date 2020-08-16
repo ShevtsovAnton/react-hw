@@ -16,7 +16,9 @@ const useStyles = makeStyles({
   },
   select: {
     position: 'relative',
-    top: 5
+    top: 5,
+    minWidth: 140,
+    textAlign: 'center'
   }
 });
 
@@ -24,7 +26,7 @@ function Sort({ handleSortEvent }) {
   const classes = useStyles();
   const [sortBy, setSortBy] = useState('releaseDate');
   const handleSortChange = e => {
-    const value = e.target.value;
+    const { value } = e.target;
     setSortBy(value);
     handleSortEvent(value);
   };
