@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -19,21 +20,38 @@ const useStyles = makeStyles({
   }
 });
 
-function Sort() {
+function Sort({ handleSortEvent }) {
   const classes = useStyles();
+  const [sortBy, setSortBy] = useState('releaseDate');
+  const handleSortChange = e => {
+    const value = e.target.value;
+    setSortBy(value);
+    handleSortEvent(value);
+  };
+
   return (
     <div className={classes.sortByGroup}>
       <Typography variant="body1" className={classes.sortBy}>
         SORT BY
       </Typography>
       <FormControl>
-        <Select disableUnderline value={1} className={classes.select} displayEmpty>
-          <MenuItem value={1}>RELEASE DATE</MenuItem>
-          <MenuItem value={2}>TITLE</MenuItem>
+        <Select
+          disableUnderline
+          value={sortBy}
+          className={classes.select}
+          displayEmpty
+          onChange={handleSortChange}
+        >
+          <MenuItem value="releaseDate">RELEASE DATE</MenuItem>
+          <MenuItem value="title">TITLE</MenuItem>
         </Select>
       </FormControl>
     </div>
   );
 }
+
+Sort.propTypes = {
+  handleSortEvent: PropTypes.func.isRequired
+};
 
 export default Sort;

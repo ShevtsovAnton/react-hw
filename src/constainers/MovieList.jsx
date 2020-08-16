@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +8,6 @@ import Container from '@material-ui/core/Container';
 import MovieItem from '../components/MovieItem';
 import Filter from '../components/Filter';
 import Sort from '../components/Sort';
-import movies from '../utils/data';
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -27,17 +27,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const countMessage = `${movies.length || 'No'} movie${movies.length === 1 ? '' : 's'} found`;
-
-export default function MovieList() {
+export default function MovieList({ movies, handleSortEvent }) {
   const classes = useStyles();
+  const countMessage = `${movies.length || 'No'} movie${movies.length === 1 ? '' : 's'} found`;
 
   return (
     <>
       <Container className={classes.main} maxWidth="lg">
         <Grid className={classes.controlGrid} container justify="space-between">
           <Filter />
-          <Sort />
+          <Sort handleSortEvent={handleSortEvent} />
         </Grid>
         <Typography variant="h6" className={classes.found}>
           {countMessage}
@@ -53,3 +52,15 @@ export default function MovieList() {
     </>
   );
 }
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      releaseDate: PropTypes.string.isRequired,
+      genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+      backdropPath: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  handleSortEvent: PropTypes.func.isRequired
+};
