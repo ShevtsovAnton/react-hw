@@ -6,6 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MovieList from './constainers/MovieList';
 import Header from './constainers/Header';
 import Footer from './constainers/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const theme = createMuiTheme({
   palette: {
@@ -34,9 +35,11 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header />
-        <MovieList />
-        <Footer />
+        <ErrorBoundary>
+          <Header />
+          <MovieList />
+          <Footer />
+        </ErrorBoundary>
       </ThemeProvider>
     </>
   );
