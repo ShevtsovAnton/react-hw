@@ -53,7 +53,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function MovieItem({ movie }) {
   const classes = useStyles();
-  const { id, title, releaseYear, genre } = movie;
+  const { title, releaseDate, genres, backdropPath } = movie;
+  const releaseYear = releaseDate.substr(0, 4);
+  const genre = genres.join(' & ');
+  const baseUrl = 'https://image.tmdb.org/t/p/original/';
   return (
     <>
       <Card className={classes.card}>
@@ -67,12 +70,12 @@ export default function MovieItem({ movie }) {
         />
         <CardMedia
           className={classes.cardMedia}
-          image="https://source.unsplash.com/random"
+          image={`${baseUrl}${backdropPath} `}
           title="Image title"
         />
         <CardContent className={classes.cardContent}>
           <div className={classes.titleAndYear}>
-            <Typography variant="body1">{`${title} ${id}`}</Typography>
+            <Typography variant="body1">{title}</Typography>
             <Typography variant="body1" className={classes.releaseYear}>
               {releaseYear}
             </Typography>
@@ -87,8 +90,8 @@ export default function MovieItem({ movie }) {
 MovieItem.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired
+    releaseDate: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    backdropPath: PropTypes.string.isRequired
   }).isRequired
 };
