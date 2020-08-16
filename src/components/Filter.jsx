@@ -42,7 +42,7 @@ function Filter({ handleFilter }) {
           className={activeFilter === filterItem ? 'selectedFilter' : ''}
           onClick={filter}
         >
-          {filter.toUpperCase()}
+          {filterItem.toUpperCase()}
         </Button>
       ))}
     </ButtonGroup>
