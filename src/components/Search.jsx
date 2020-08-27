@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function FindMovie({ handleSearch }) {
+export default function Search({ handleSearch }) {
   const classes = useStyles();
   const [query, setQuery] = useState('');
   const search = () => {
@@ -55,6 +55,6 @@ export default function FindMovie({ handleSearch }) {
   );
 }
 
-FindMovie.propTypes = {
+Search.propTypes = {
   handleSearch: PropTypes.func.isRequired
 };

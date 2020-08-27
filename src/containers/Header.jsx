@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Logo from '../components/Logo';
-import FindMovie from '../components/FindMovie';
+import FindMovie from '../components/Search';
 
 const useStyles = makeStyles(theme => ({
   headerContainer: {
