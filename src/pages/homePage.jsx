@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import MovieList from '../constainers/MovieList';
-import Header from '../constainers/Header';
-import Footer from '../constainers/Footer';
+import MovieList from '../containers/MovieList';
+import Header from '../containers/Header';
+import Footer from '../containers/Footer';
 import moviesList from '../utils/data';
 
 function HomePage() {
@@ -42,8 +42,8 @@ function HomePage() {
       return;
     }
     const filteredList = moviesList.filter(movie => {
-      const formatedGenres = movie.genres.map(genre => genre.toUpperCase());
-      return formatedGenres.includes(filter.toUpperCase());
+      const formattedGenres = movie.genres.map(genre => genre.toUpperCase());
+      return formattedGenres.includes(filter.toUpperCase());
     });
     setMovies(filteredList);
   };
