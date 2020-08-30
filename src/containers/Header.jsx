@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Logo from '../components/Logo';
 import FindMovie from '../components/Search';
+import { defaultMovie } from '../utils/misc';
 
 const useStyles = makeStyles(theme => ({
   headerContainer: {
@@ -24,8 +25,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Header({ handleSearch }) {
+function Header({ handleSearch, setIsEditMode, setOpenAddEditModal, setSelectedMovie }) {
   const classes = useStyles();
+
+  const handleClick = () => {
+    setSelectedMovie({ ...defaultMovie });
+    setIsEditMode(false);
+    setOpenAddEditModal(true);
+  };
   return (
     <Container className={classes.headerContainer} maxWidth="lg">
       <Grid container justify="space-between">
@@ -36,6 +43,7 @@ function Header({ handleSearch }) {
           size="medium"
           className={classes.button}
           startIcon={<AddIcon />}
+          onClick={handleClick}
         >
           ADD MOVIE
         </Button>
@@ -50,5 +58,22 @@ function Header({ handleSearch }) {
 export default Header;
 
 Header.propTypes = {
-  handleSearch: PropTypes.func.isRequired
+  handleSearch: PropTypes.func.isRequired,
+  setIsEditMode: PropTypes.func.isRequired,
+  setOpenAddEditModal: PropTypes.func.isRequired,
+  setSelectedMovie: PropTypes.func.isRequired,
+  selectedMovie: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    releaseDate: PropTypes.string,
+    genres: PropTypes.arrayOf(PropTypes.string),
+    backdropPath: PropTypes.string,
+    overview: PropTypes.string,
+    movieUrl: PropTypes.string,
+    runtime: PropTypes.number
+  })
+};
+
+Header.defaultProps = {
+  selectedMovie: null
 };

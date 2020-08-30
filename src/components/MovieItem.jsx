@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import CardHeader from '@material-ui/core/CardHeader';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -10,7 +11,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
-import PropTypes from 'prop-types';
 import baseUrl from '../utils/api';
 
 const useStyles = makeStyles(theme => ({
@@ -69,7 +69,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function MovieItem({ movie }) {
+export default function MovieItem({
+  movie,
+  setIsEditMode,
+  setOpenAddEditModal,
+  setOpenDeleteModal,
+  setSelectedMovie
+}) {
   const classes = useStyles();
   const { title, releaseDate, genres, backdropPath } = movie;
   const releaseYear = releaseDate.substr(0, 4);
@@ -79,9 +85,14 @@ export default function MovieItem({ movie }) {
   const open = Boolean(anchorEl);
 
   const handleEdit = () => {
+    setIsEditMode(true);
+    setOpenAddEditModal(true);
+    setSelectedMovie(movie);
     setAnchorEl(null);
   };
   const handleDelete = () => {
+    setOpenDeleteModal(true);
+    setSelectedMovie(movie);
     setAnchorEl(null);
   };
 
@@ -151,9 +162,14 @@ export default function MovieItem({ movie }) {
 
 MovieItem.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     releaseDate: PropTypes.string.isRequired,
     genres: PropTypes.arrayOf(PropTypes.string).isRequired,
     backdropPath: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  setIsEditMode: PropTypes.func.isRequired,
+  setOpenAddEditModal: PropTypes.func.isRequired,
+  setOpenDeleteModal: PropTypes.func.isRequired,
+  setSelectedMovie: PropTypes.func.isRequired
 };
