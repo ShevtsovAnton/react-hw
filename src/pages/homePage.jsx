@@ -53,7 +53,8 @@ function HomePage() {
   };
 
   const deleteMovie = () => {
-    setMovies(movies.filter(movie => movie.id !== selectedMovie.id));
+    const updatedMovieList = movies.filter(movie => movie.id !== selectedMovie.id);
+    setMovies(updatedMovieList);
     setSelectedMovie(null);
   };
 
