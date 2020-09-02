@@ -49,45 +49,43 @@ export default function MovieList({
   const countMessage = `${movies.length || 'No'} movie${movies.length === 1 ? '' : 's'} found`;
 
   return (
-    <>
-      <Container className={classes.main} maxWidth="lg">
-        <Grid className={classes.controlGrid} container justify="space-between">
-          <Filter handleFilter={handleFilter} />
-          <Sort handleSort={handleSort} />
-        </Grid>
-        <Typography variant="h6" className={classes.found}>
-          {countMessage}
-        </Typography>
-        <Grid container spacing={4}>
-          {movies.map(movie => (
-            <Grid item key={movie.id} xs={12} sm={6} md={4}>
-              <MovieItem
-                movie={movie}
-                setIsEditMode={setIsEditMode}
-                setOpenAddEditModal={setOpenAddEditModal}
-                setOpenDeleteModal={setOpenDeleteModal}
-                setSelectedMovie={setSelectedMovie}
-              />
-            </Grid>
-          ))}
-        </Grid>
-        <Delete
-          setOpenDeleteModal={setOpenDeleteModal}
-          openDeleteModal={openDeleteModal}
-          deleteMovie={deleteMovie}
-          setSelectedMovie={setSelectedMovie}
-        />
-        <AddEditDialog
-          isEditMode={isEditMode}
-          openAddEditModal={openAddEditModal}
-          setOpenAddEditModal={setOpenAddEditModal}
-          selectedMovie={selectedMovie}
-          editMovie={editMovie}
-          setSelectedMovie={setSelectedMovie}
-          addMovie={addMovie}
-        />
-      </Container>
-    </>
+    <Container className={classes.main} maxWidth="lg">
+      <Grid className={classes.controlGrid} container justify="space-between">
+        <Filter handleFilter={handleFilter} />
+        <Sort handleSort={handleSort} />
+      </Grid>
+      <Typography variant="h6" className={classes.found}>
+        {countMessage}
+      </Typography>
+      <Grid container spacing={4}>
+        {movies.map(movie => (
+          <Grid item key={movie.id} xs={12} sm={6} md={4}>
+            <MovieItem
+              movie={movie}
+              setIsEditMode={setIsEditMode}
+              setOpenAddEditModal={setOpenAddEditModal}
+              setOpenDeleteModal={setOpenDeleteModal}
+              setSelectedMovie={setSelectedMovie}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <Delete
+        setOpenDeleteModal={setOpenDeleteModal}
+        openDeleteModal={openDeleteModal}
+        deleteMovie={deleteMovie}
+        setSelectedMovie={setSelectedMovie}
+      />
+      <AddEditDialog
+        isEditMode={isEditMode}
+        openAddEditModal={openAddEditModal}
+        setOpenAddEditModal={setOpenAddEditModal}
+        selectedMovie={selectedMovie}
+        editMovie={editMovie}
+        setSelectedMovie={setSelectedMovie}
+        addMovie={addMovie}
+      />
+    </Container>
   );
 }
 
