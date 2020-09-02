@@ -204,7 +204,7 @@ class AddEditDialog extends React.Component {
               <Button onClick={this.handleReset} color="primary">
                 RESET
               </Button>
-              <Button onClick={() => this.submit()} color="primary" autoFocus>
+              <Button onClick={this.submit} color="primary" autoFocus>
                 SUBMIT
               </Button>
             </DialogActions>
