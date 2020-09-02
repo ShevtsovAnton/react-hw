@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 import MovieItem from '../components/MovieItem';
 import Filter from '../components/Filter';
 import Sort from '../components/Sort';
-import Delete from '../components/Delete';
+import ModalMovieDeletion from '../components/ModalMovieDeletion';
 import AddEditDialog from '../components/AddEditDialog';
 
 const useStyles = makeStyles(theme => ({
@@ -75,7 +75,7 @@ export default function MovieList({
           </Grid>
         ))}
       </Grid>
-      <Delete
+      <ModalMovieDeletion
         openDeleteModal={openDeleteModal}
         closeModalMovieDeletion={closeModalMovieDeletion}
         deleteMovie={deleteMovie}

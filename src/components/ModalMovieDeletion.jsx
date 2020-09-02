@@ -26,7 +26,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Delete({ openDeleteModal, deleteMovie, closeModalMovieDeletion }) {
+export default function ModalMovieDeletion({
+  openDeleteModal,
+  deleteMovie,
+  closeModalMovieDeletion
+}) {
   const classes = useStyles();
 
   const handleConfirm = () => {
@@ -64,7 +68,7 @@ export default function Delete({ openDeleteModal, deleteMovie, closeModalMovieDe
   );
 }
 
-Delete.propTypes = {
+ModalMovieDeletion.propTypes = {
   closeModalMovieDeletion: PropTypes.func.isRequired,
   openDeleteModal: PropTypes.bool.isRequired,
   deleteMovie: PropTypes.func.isRequired
