@@ -48,6 +48,11 @@ export default function MovieList({
   const classes = useStyles();
   const countMessage = `${movies.length || 'No'} movie${movies.length === 1 ? '' : 's'} found`;
 
+  const closeModalMovieDeletion = () => {
+    setOpenDeleteModal(false);
+    setSelectedMovie(null);
+  };
+
   return (
     <Container className={classes.main} maxWidth="lg">
       <Grid className={classes.controlGrid} container justify="space-between">
@@ -71,10 +76,9 @@ export default function MovieList({
         ))}
       </Grid>
       <Delete
-        setOpenDeleteModal={setOpenDeleteModal}
         openDeleteModal={openDeleteModal}
+        closeModalMovieDeletion={closeModalMovieDeletion}
         deleteMovie={deleteMovie}
-        setSelectedMovie={setSelectedMovie}
       />
       <AddEditDialog
         isEditMode={isEditMode}

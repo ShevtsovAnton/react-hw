@@ -26,22 +26,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Delete({
-  setOpenDeleteModal,
-  openDeleteModal,
-  deleteMovie,
-  setSelectedMovie
-}) {
+export default function Delete({ openDeleteModal, deleteMovie, closeModalMovieDeletion }) {
   const classes = useStyles();
 
   const handleConfirm = () => {
     deleteMovie();
-    setOpenDeleteModal(false);
-  };
-
-  const handleClose = () => {
-    setOpenDeleteModal(false);
-    setSelectedMovie(null);
+    closeModalMovieDeletion();
   };
 
   return (
@@ -52,7 +42,11 @@ export default function Delete({
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">DELETE MOVIE</DialogTitle>
-        <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={closeModalMovieDeletion}
+        >
           <CloseIcon />
         </IconButton>
         <DialogContent>
@@ -71,8 +65,7 @@ export default function Delete({
 }
 
 Delete.propTypes = {
-  setOpenDeleteModal: PropTypes.func.isRequired,
+  closeModalMovieDeletion: PropTypes.func.isRequired,
   openDeleteModal: PropTypes.bool.isRequired,
-  deleteMovie: PropTypes.func.isRequired,
-  setSelectedMovie: PropTypes.func.isRequired
+  deleteMovie: PropTypes.func.isRequired
 };
