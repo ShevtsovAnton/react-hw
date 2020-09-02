@@ -4,6 +4,7 @@ import MovieList from '../containers/MovieList';
 import Header from '../containers/Header';
 import Footer from '../containers/Footer';
 import moviesList from '../utils/data';
+import { defaultMovie } from '../utils/misc';
 
 function HomePage() {
   const [movies, setMovies] = useState(moviesList);
@@ -67,14 +68,16 @@ function HomePage() {
     const newMovie = { ...movie, id: new Date().getTime() };
     setMovies([...movies, newMovie]);
   };
+
+  const openModalAddMovie = () => {
+    setSelectedMovie({ ...defaultMovie });
+    setIsEditMode(false);
+    setOpenAddEditModal(true);
+  };
+
   return (
     <>
-      <Header
-        handleSearch={handleSearch}
-        setIsEditMode={setIsEditMode}
-        setOpenAddEditModal={setOpenAddEditModal}
-        setSelectedMovie={setSelectedMovie}
-      />
+      <Header handleSearch={handleSearch} handleClick={openModalAddMovie} />
       <MovieList
         movies={movies}
         handleSort={handleSort}
