@@ -35,9 +35,6 @@ const styles = theme => ({
   select: {
     width: '100%',
     marginBottom: theme.spacing(3)
-  },
-  label: {
-    color: '#f65261'
   }
 });
 
@@ -122,7 +119,6 @@ class AddEditDialog extends React.Component {
                   InputLabelProps={{
                     style: { color: '#f65261' }
                   }}
-                  labelClassName={classes.label}
                   type="text"
                   value={selectedMovie.title}
                   fullWidth
@@ -132,7 +128,8 @@ class AddEditDialog extends React.Component {
                   className={classes.field}
                   label="RELEASE DATE"
                   InputLabelProps={{
-                    style: { color: '#f65261' }
+                    style: { color: '#f65261' },
+                    shrink: true
                   }}
                   type="date"
                   value={selectedMovie.releaseDate}
