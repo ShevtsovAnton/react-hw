@@ -2,26 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  buttonGroup: {
-    '& Button': {
-      marginRight: theme.spacing(4),
-      border: 'none',
-      borderRadius: 0,
-      paddingLeft: 0,
-      paddingRight: 0,
-      '&:hover': {
-        backgroundColor: 'inherit'
-      },
-      '&.selectedFilter': {
-        borderBottom: `2px solid ${theme.palette.primary.main}`,
-        marginBottom: '-2px'
-      }
-    }
-  }
-}));
+import useStyles from './styles';
 
 const filters = ['all', 'documentary', 'comedy', 'horror', 'crime'];
 

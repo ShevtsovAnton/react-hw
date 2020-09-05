@@ -4,23 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  sortByGroup: {
-    display: 'flex'
-  },
-  sortBy: {
-    alignSelf: 'center',
-    marginRight: 20
-  },
-  select: {
-    position: 'relative',
-    top: 5,
-    minWidth: 140,
-    textAlign: 'center'
-  }
-});
+import useStyles from './styles';
 
 function Sort({ handleSort }) {
   const classes = useStyles();

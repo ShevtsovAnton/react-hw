@@ -4,13 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-  searchGroup: {
-    marginTop: theme.spacing(2)
-  }
-}));
+import useStyles from './styles';
 
 export default function Search({ handleSearch }) {
   const classes = useStyles();

@@ -4,70 +4,14 @@ import IconButton from '@material-ui/core/IconButton';
 import CardHeader from '@material-ui/core/CardHeader';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
-import baseUrl from '../utils/api';
-
-const useStyles = makeStyles(theme => ({
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    position: 'relative',
-    transition: '0.4s ease-out',
-    '&:hover $cardHeader': {
-      display: 'block'
-    }
-  },
-  cardMedia: {
-    height: 400
-  },
-  cardContent: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.info.main,
-    paddingLeft: 0,
-    paddingRight: 0
-  },
-  cardHeader: {
-    position: 'absolute',
-    top: 5,
-    right: 5,
-    display: 'none'
-  },
-  iconButton: {
-    backgroundColor: theme.palette.info.main
-  },
-  titleAndYear: {
-    display: 'flex',
-    justifyContent: 'space-between'
-  },
-  releaseYear: {
-    border: `1px solid ${theme.palette.text.primary}`,
-    borderRadius: 5,
-    paddingRight: 10,
-    paddingLeft: 10,
-    fontSize: '0.8rem'
-  },
-  closeIcon: {
-    position: 'absolute',
-    right: 10,
-    top: 0
-  },
-  closeContainer: {
-    position: 'relative',
-    marginBottom: 25
-  },
-  menu: {
-    position: 'absolute',
-    right: 0,
-    top: 0
-  }
-}));
+import baseUrl from '../../utils/api';
+import useStyles from './styles';
 
 export default function MovieItem({
   movie,

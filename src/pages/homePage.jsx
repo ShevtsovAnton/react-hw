@@ -5,6 +5,7 @@ import Header from '../containers/Header';
 import Footer from '../containers/Footer';
 import moviesList from '../utils/data';
 import { defaultMovie } from '../utils/misc';
+import helpers from '../utils/helpers';
 
 function HomePage() {
   const [movies, setMovies] = useState(moviesList);
@@ -14,19 +15,7 @@ function HomePage() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleSort = sortBy => {
-    const sortedMovies = [
-      ...movies.sort((a, b) => {
-        const valueA = a[sortBy].toUpperCase();
-        const valueB = b[sortBy].toUpperCase();
-        if (valueA < valueB) {
-          return -1;
-        }
-        if (valueA > valueB) {
-          return 1;
-        }
-        return 0;
-      })
-    ];
+    const sortedMovies = helpers.getSortedMovies(movies, sortBy);
     setMovies(sortedMovies);
   };
 

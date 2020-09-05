@@ -4,25 +4,10 @@ import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 
-import Logo from '../components/Logo';
-import FindMovie from '../components/Search';
-
-const useStyles = makeStyles(theme => ({
-  headerContainer: {
-    backgroundColor: theme.palette.info.main,
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(18),
-    paddingLeft: theme.spacing(7),
-    paddingRight: theme.spacing(7)
-  },
-  searchContainer: {
-    marginTop: theme.spacing(7),
-    paddingLeft: theme.spacing(7),
-    paddingRight: theme.spacing(7)
-  }
-}));
+import Logo from '../../components/Logo';
+import FindMovie from '../../components/Search';
+import useStyles from './styles';
 
 function Header({ handleSearch, handleClick }) {
   const classes = useStyles();

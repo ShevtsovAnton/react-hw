@@ -8,23 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2)
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  },
-  dialogContent: {
-    color: '#ffffff'
-  }
-}));
+import useStyles from './styles';
 
 export default function ModalMovieDeletion({
   openDeleteModal,

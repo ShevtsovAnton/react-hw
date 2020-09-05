@@ -1,33 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
-import MovieItem from '../components/MovieItem';
-import Filter from '../components/Filter';
-import Sort from '../components/Sort';
-import ModalMovieDeletion from '../components/ModalMovieDeletion';
-import AddEditDialog from '../components/AddEditDialog';
-
-const useStyles = makeStyles(theme => ({
-  main: {
-    paddingTop: theme.spacing(7),
-    paddingBottom: theme.spacing(7),
-    paddingLeft: theme.spacing(7),
-    paddingRight: theme.spacing(7),
-    marginTop: theme.spacing(2),
-    backgroundColor: theme.palette.info.main
-  },
-  controlGrid: {
-    borderBottom: `2px solid ${theme.palette.text.secondary}`
-  },
-  found: {
-    marginBottom: theme.spacing(3),
-    marginTop: theme.spacing(3)
-  }
-}));
+import MovieItem from '../../components/MovieItem';
+import Filter from '../../components/Filter';
+import Sort from '../../components/Sort';
+import ModalMovieDeletion from '../../components/ModalMovieDeletion';
+import AddEditDialog from '../../components/AddEditDialog';
+import getCountMessage from './helpers';
+import useStyles from './styles';
 
 export default function MovieList({
   movies,
@@ -46,7 +30,7 @@ export default function MovieList({
   addMovie
 }) {
   const classes = useStyles();
-  const countMessage = `${movies.length || 'No'} movie${movies.length === 1 ? '' : 's'} found`;
+  const countMessage = getCountMessage(movies);
 
   const closeModalMovieDeletion = () => {
     setOpenDeleteModal(false);
