@@ -18,7 +18,8 @@ export default function MovieItem({
   setIsEditMode,
   setOpenAddEditModal,
   setOpenDeleteModal,
-  setSelectedMovie
+  setSelectedMovie,
+  setShowDetail
 }) {
   const classes = useStyles();
   const { title, releaseDate, genres, backdropPath } = movie;
@@ -48,6 +49,10 @@ export default function MovieItem({
     setAnchorEl(null);
   };
 
+  const handleImageClick = () => {
+    setSelectedMovie(movie);
+    setShowDetail(true);
+  };
   return (
     <>
       <Card className={classes.card}>
@@ -89,6 +94,7 @@ export default function MovieItem({
           className={classes.cardMedia}
           image={`${baseUrl}${backdropPath} `}
           title="Image title"
+          onClick={handleImageClick}
         />
         <CardContent className={classes.cardContent}>
           <div className={classes.titleAndYear}>
@@ -115,5 +121,6 @@ MovieItem.propTypes = {
   setIsEditMode: PropTypes.func.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
-  setSelectedMovie: PropTypes.func.isRequired
+  setSelectedMovie: PropTypes.func.isRequired,
+  setShowDetail: PropTypes.func.isRequired
 };

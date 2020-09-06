@@ -12,6 +12,7 @@ function HomePage() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [openAddEditModal, setOpenAddEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleSort = sortBy => {
@@ -66,7 +67,13 @@ function HomePage() {
 
   return (
     <>
-      <Header handleSearch={handleSearch} handleClick={openModalAddMovie} />
+      <Header
+        handleSearch={handleSearch}
+        handleClick={openModalAddMovie}
+        selectedMovie={selectedMovie}
+        showDetail={showDetail}
+        setShowDetail={setShowDetail}
+      />
       <MovieList
         movies={movies}
         handleSort={handleSort}
@@ -82,6 +89,8 @@ function HomePage() {
         setSelectedMovie={setSelectedMovie}
         editMovie={editMovie}
         addMovie={addMovie}
+        showDetail={showDetail}
+        setShowDetail={setShowDetail}
       />
       <Footer />
     </>

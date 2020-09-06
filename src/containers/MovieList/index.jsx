@@ -27,7 +27,8 @@ export default function MovieList({
   setSelectedMovie,
   selectedMovie,
   editMovie,
-  addMovie
+  addMovie,
+  setShowDetail
 }) {
   const classes = useStyles();
   const countMessage = getCountMessage(movies);
@@ -55,6 +56,7 @@ export default function MovieList({
               setOpenAddEditModal={setOpenAddEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
               setSelectedMovie={setSelectedMovie}
+              setShowDetail={setShowDetail}
             />
           </Grid>
         ))}
@@ -104,7 +106,8 @@ MovieList.propTypes = {
   }),
   setSelectedMovie: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
-  addMovie: PropTypes.func.isRequired
+  addMovie: PropTypes.func.isRequired,
+  setShowDetail: PropTypes.func.isRequired
 };
 
 MovieList.defaultProps = {
