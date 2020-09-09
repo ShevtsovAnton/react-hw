@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import useStyles from './styles';
 
 import MovieItem from '../../components/MovieItem';
 import Filter from '../../components/Filter';
@@ -11,7 +12,7 @@ import Sort from '../../components/Sort';
 import ModalMovieDeletion from '../../components/ModalMovieDeletion';
 import AddEditDialog from '../../components/AddEditDialog';
 import getCountMessage from './helpers';
-import useStyles from './styles';
+import movieType from '../../utils/movie.type';
 
 export default function MovieList({
   movies,
@@ -97,13 +98,7 @@ MovieList.propTypes = {
   setOpenDeleteModal: PropTypes.func.isRequired,
   openDeleteModal: PropTypes.bool.isRequired,
   deleteMovie: PropTypes.func.isRequired,
-  selectedMovie: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    releaseDate: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    backdropPath: PropTypes.string
-  }),
+  selectedMovie: movieType,
   setSelectedMovie: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
   addMovie: PropTypes.func.isRequired,

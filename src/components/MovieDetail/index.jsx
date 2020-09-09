@@ -1,10 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import baseUrl from '../../utils/api';
 import useStyles from './styles';
+import movieType from '../../utils/movie.type';
 
 export default function MovieDetail({ movie }) {
   const classes = useStyles();
@@ -39,15 +39,5 @@ export default function MovieDetail({ movie }) {
 }
 
 MovieDetail.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    posterPath: PropTypes.string.isRequired,
-    overview: PropTypes.string.isRequired,
-    voteAverage: PropTypes.number,
-    duration: PropTypes.number,
-    mediaType: PropTypes.string
-  }).isRequired
+  movie: movieType.isRequired
 };

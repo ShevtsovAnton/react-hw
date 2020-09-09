@@ -17,6 +17,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import useStyles from './styles';
 import { genres, defaultMovie } from '../../utils/misc';
+import movieType from '../../utils/movie.type';
 
 function AddEditDialog({
   selectedMovie,
@@ -196,16 +197,7 @@ AddEditDialog.propTypes = {
   setOpenAddEditModal: PropTypes.func.isRequired,
   openAddEditModal: PropTypes.bool.isRequired,
   setSelectedMovie: PropTypes.func.isRequired,
-  selectedMovie: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    releaseDate: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    backdropPath: PropTypes.string,
-    overview: PropTypes.string,
-    movieUrl: PropTypes.string,
-    runtime: PropTypes.number
-  }),
+  selectedMovie: movieType,
   editMovie: PropTypes.func.isRequired,
   addMovie: PropTypes.func.isRequired
 };

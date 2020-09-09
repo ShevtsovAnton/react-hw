@@ -5,11 +5,12 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import SearchIcon from '@material-ui/icons/Search';
+import useStyles from './styles';
 
 import Logo from '../../components/Logo';
 import MovieDetail from '../../components/MovieDetail';
 import FindMovie from '../../components/Search';
-import useStyles from './styles';
+import movieType from '../../utils/movie.type';
 
 function Header({ handleSearch, handleClick, showDetail, selectedMovie, setShowDetail }) {
   const classes = useStyles();
@@ -54,13 +55,7 @@ export default Header;
 Header.propTypes = {
   handleSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
-  selectedMovie: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    releaseDate: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    backdropPath: PropTypes.string
-  }),
+  selectedMovie: movieType,
   showDetail: PropTypes.bool.isRequired,
   setShowDetail: PropTypes.func.isRequired
 };

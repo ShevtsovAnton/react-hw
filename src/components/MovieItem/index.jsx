@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
 import baseUrl from '../../utils/api';
 import useStyles from './styles';
+import movieType from '../../utils/movie.type';
 
 export default function MovieItem({
   movie,
@@ -111,13 +112,7 @@ export default function MovieItem({
 }
 
 MovieItem.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    backdropPath: PropTypes.string.isRequired
-  }).isRequired,
+  movie: movieType.isRequired,
   setIsEditMode: PropTypes.func.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
