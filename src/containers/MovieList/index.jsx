@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
@@ -29,15 +29,16 @@ export default function MovieList({
   selectedMovie,
   editMovie,
   addMovie,
-  setShowDetail
+  setShowDetail,
+  setDetailedMovie
 }) {
   const classes = useStyles();
   const countMessage = getCountMessage(movies);
 
-  const closeModalMovieDeletion = () => {
+  const closeModalMovieDeletion = useCallback(() => {
     setOpenDeleteModal(false);
     setSelectedMovie(null);
-  };
+  });
 
   return (
     <Container className={classes.main} maxWidth="lg">
@@ -58,6 +59,7 @@ export default function MovieList({
               setOpenDeleteModal={setOpenDeleteModal}
               setSelectedMovie={setSelectedMovie}
               setShowDetail={setShowDetail}
+              setDetailedMovie={setDetailedMovie}
             />
           </Grid>
         ))}
@@ -81,14 +83,7 @@ export default function MovieList({
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      releaseDate: PropTypes.string,
-      genres: PropTypes.arrayOf(PropTypes.string),
-      backdropPath: PropTypes.string
-    }).isRequired
-  ).isRequired,
+  movies: PropTypes.arrayOf(movieType).isRequired,
   handleSort: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   setIsEditMode: PropTypes.func.isRequired,
@@ -102,7 +97,8 @@ MovieList.propTypes = {
   setSelectedMovie: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
   addMovie: PropTypes.func.isRequired,
-  setShowDetail: PropTypes.func.isRequired
+  setShowDetail: PropTypes.func.isRequired,
+  setDetailedMovie: PropTypes.func.isRequired
 };
 
 MovieList.defaultProps = {

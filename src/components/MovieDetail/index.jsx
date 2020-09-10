@@ -39,5 +39,9 @@ export default function MovieDetail({ movie }) {
 }
 
 MovieDetail.propTypes = {
-  movie: movieType.isRequired
+  movie: movieType
+};
+
+MovieDetail.defaultProps = {
+  movie: null
 };

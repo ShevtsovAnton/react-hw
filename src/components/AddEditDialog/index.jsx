@@ -63,7 +63,6 @@ function AddEditDialog({
     }
     handleClose();
   };
-
   return (
     <>
       {selectedMovie ? (

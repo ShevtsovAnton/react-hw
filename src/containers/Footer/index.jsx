@@ -5,6 +5,7 @@ import useStyles from './styles';
 
 function Footer() {
   const classes = useStyles();
+
   return (
     <Container className={classes.footer} maxWidth="lg">
       <Logo />

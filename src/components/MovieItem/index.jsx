@@ -20,7 +20,8 @@ export default function MovieItem({
   setOpenAddEditModal,
   setOpenDeleteModal,
   setSelectedMovie,
-  setShowDetail
+  setShowDetail,
+  setDetailedMovie
 }) {
   const classes = useStyles();
   const { title, releaseDate, genres, backdropPath } = movie;
@@ -51,9 +52,16 @@ export default function MovieItem({
   };
 
   const handleImageClick = () => {
-    setSelectedMovie(movie);
+    setDetailedMovie(movie);
     setShowDetail(true);
   };
+
+  // const handleImageClick = useCallback(() => {
+  //   window.scrollTo(0, 0);
+  //   setSelectedMovie(movie);
+  //   setShowDetail(true);
+  // }, [selectedMovie]);
+
   return (
     <>
       <Card className={classes.card}>
@@ -117,5 +125,6 @@ MovieItem.propTypes = {
   setOpenAddEditModal: PropTypes.func.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
   setSelectedMovie: PropTypes.func.isRequired,
-  setShowDetail: PropTypes.func.isRequired
+  setShowDetail: PropTypes.func.isRequired,
+  setDetailedMovie: PropTypes.func.isRequired
 };
