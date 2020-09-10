@@ -6,6 +6,7 @@ import Footer from '../containers/Footer';
 import moviesList from '../utils/data';
 import { defaultMovie } from '../utils/misc';
 import helpers from '../utils/helpers';
+import useDetailedMovieLogger from '../hooks/useDetailedMovieLogger';
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -19,6 +20,8 @@ function HomePage() {
   useEffect(() => {
     setMovies([...moviesList]);
   }, [moviesList]);
+
+  useDetailedMovieLogger(detailedMovie);
 
   const handleSort = useCallback(
     sortBy => {
