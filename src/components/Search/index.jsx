@@ -4,15 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles';
 
-const useStyles = makeStyles(theme => ({
-  searchGroup: {
-    marginTop: theme.spacing(2)
-  }
-}));
-
-export default function FindMovie({ handleSearch }) {
+export default function Search({ handleSearch }) {
   const classes = useStyles();
   const [query, setQuery] = useState('');
   const search = () => {
@@ -55,6 +49,6 @@ export default function FindMovie({ handleSearch }) {
   );
 }
 
-FindMovie.propTypes = {
+Search.propTypes = {
   handleSearch: PropTypes.func.isRequired
 };
