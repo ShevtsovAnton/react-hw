@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -51,16 +51,10 @@ export default function MovieItem({
     setAnchorEl(null);
   };
 
-  const handleImageClick = () => {
+  const handleImageClick = useCallback(() => {
     setDetailedMovie(movie);
     setShowDetail(true);
-  };
-
-  // const handleImageClick = useCallback(() => {
-  //   window.scrollTo(0, 0);
-  //   setSelectedMovie(movie);
-  //   setShowDetail(true);
-  // }, [selectedMovie]);
+  }, [movie]);
 
   return (
     <>
