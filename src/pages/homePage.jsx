@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import MovieList from '../containers/MovieList';
 import Header from '../containers/Header';
@@ -6,141 +6,119 @@ import Footer from '../containers/Footer';
 import moviesList from '../utils/data';
 import { defaultMovie } from '../utils/misc';
 import helpers from '../utils/helpers';
+import useDetailedMovieLogger from '../hooks/useDetailedMovieLogger';
 
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: [],
-      isEditMode: false,
-      openAddEditModal: false,
-      openDeleteModal: false,
-      selectedMovie: null
-    };
-  }
+function HomePage() {
+  const [movies, setMovies] = useState([]);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [openAddEditModal, setOpenAddEditModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [detailedMovie, setDetailedMovie] = useState(null);
 
-  componentDidMount() {
-    this.setState({
-      movies: [...moviesList]
-    });
-  }
+  useEffect(() => {
+    setMovies([...moviesList]);
+  }, [moviesList]);
 
-  setMovies(movies) {
-    this.setState({
-      movies: [...movies]
-    });
-  }
+  useDetailedMovieLogger(detailedMovie);
 
-  setIsEditMode(val) {
-    this.setState({
-      isEditMode: val
-    });
-  }
+  const handleSort = useCallback(
+    sortBy => {
+      const sortedMovies = helpers.getSortedMovies(movies, sortBy);
+      setMovies(sortedMovies);
+    },
+    [movies]
+  );
 
-  setOpenAddEditModal(val) {
-    this.setState({
-      openAddEditModal: val
-    });
-  }
+  const handleSearch = useCallback(
+    query => {
+      if (query.trim() === '') {
+        setMovies(moviesList);
+        return;
+      }
+      const searchResults = moviesList.filter(movie =>
+        movie.title.toUpperCase().includes(query.trim().toUpperCase())
+      );
+      setMovies(searchResults);
+    },
+    [moviesList]
+  );
 
-  setOpenDeleteModal(val) {
-    this.setState({
-      openDeleteModal: val
-    });
-  }
+  const handleFilter = useCallback(
+    filter => {
+      if (filter === 'all') {
+        setMovies(moviesList);
+        return;
+      }
+      const filteredList = moviesList.filter(movie => {
+        const formattedGenres = movie.genres.map(genre => genre.toUpperCase());
+        return formattedGenres.includes(filter.toUpperCase());
+      });
+      setMovies(filteredList);
+    },
+    [moviesList]
+  );
 
-  setSelectedMovie(movie) {
-    this.setState({
-      selectedMovie: { ...movie }
-    });
-  }
+  const deleteMovie = useCallback(() => {
+    const updatedMovieList = movies.filter(movie => movie.id !== selectedMovie.id);
+    setMovies(updatedMovieList);
+    setSelectedMovie(null);
+  }, [selectedMovie]);
 
-  handleSearch = query => {
-    if (query.trim() === '') {
-      this.setMovies(moviesList);
-      return;
-    }
-    const searchResults = moviesList.filter(movie =>
-      movie.title.toUpperCase().includes(query.trim().toUpperCase())
-    );
-    this.setMovies(searchResults);
-  };
+  const editMovie = useCallback(
+    editedMovie => {
+      const foundIndex = movies.findIndex(movie => movie.id === editedMovie.id);
+      setMovies([...movies.slice(0, foundIndex, 1), editedMovie, ...movies.slice(foundIndex + 1)]);
+    },
+    [movies]
+  );
 
-  handleFilter = filter => {
-    if (filter === 'all') {
-      this.setMovies(moviesList);
-      return;
-    }
-    const filteredList = moviesList.filter(movie => {
-      const formattedGenres = movie.genres.map(genre => genre.toUpperCase());
-      return formattedGenres.includes(filter.toUpperCase());
-    });
-    this.setMovies(filteredList);
-  };
+  const addMovie = useCallback(
+    movie => {
+      const newMovie = { ...movie, id: new Date().getTime() };
+      setMovies([...movies, newMovie]);
+    },
+    [movies]
+  );
 
-  handleSort = sortBy => {
-    const { movies } = this.state;
-    const sortedMovies = helpers.getSortedMovies(movies, sortBy);
-    this.setState({
-      movies: [...sortedMovies]
-    });
-  };
+  const openModalAddMovie = useCallback(() => {
+    setSelectedMovie({ ...defaultMovie });
+    setIsEditMode(false);
+    setOpenAddEditModal(true);
+  }, []);
 
-  deleteMovie() {
-    const { movies } = this.state;
-    const updatedMovieList = movies.filter(movie => movie.id !== this.selectedMovie.id);
-    this.setMovies(updatedMovieList);
-    this.setSelectedMovie(null);
-  }
-
-  editMovie(editedMovie) {
-    const { movies } = this.state;
-    const foundIndex = movies.findIndex(movie => movie.id === editedMovie.id);
-    const updatedList = [
-      ...movies.slice(0, foundIndex, 1),
-      editedMovie,
-      ...movies.slice(foundIndex + 1)
-    ];
-    this.setMovies(updatedList);
-  }
-
-  addMovie(movie) {
-    const { movies } = this.state;
-    const newMovie = { ...movie, id: new Date().getTime() };
-    this.setMovies([...movies, newMovie]);
-  }
-
-  openModalAddMovie() {
-    this.setSelectedMovie(defaultMovie);
-    this.setIsEditMode(false);
-    this.setOpenAddEditModal(false);
-  }
-
-  render() {
-    const { isEditMode, openAddEditModal, openDeleteModal, selectedMovie, movies } = this.state;
-    return (
-      <>
-        <Header handleSearch={this.handleSearch} handleClick={this.openModalAddMovie} />
-        <MovieList
-          movies={movies}
-          handleSort={this.handleSort}
-          handleFilter={this.handleFilter}
-          isEditMode={isEditMode}
-          setIsEditMode={this.setIsEditMode}
-          openAddEditModal={openAddEditModal}
-          setOpenAddEditModal={this.setOpenAddEditModal}
-          openDeleteModal={openDeleteModal}
-          setOpenDeleteModal={this.setOpenDeleteModal}
-          deleteMovie={this.deleteMovie}
-          selectedMovie={selectedMovie}
-          setSelectedMovie={this.setSelectedMovie}
-          editMovie={this.editMovie}
-          addMovie={this.addMovie}
-        />
-        <Footer />
-      </>
-    );
-  }
+  return (
+    <>
+      <Header
+        handleSearch={handleSearch}
+        handleClick={openModalAddMovie}
+        showDetail={showDetail}
+        setShowDetail={setShowDetail}
+        detailedMovie={detailedMovie}
+      />
+      <MovieList
+        movies={movies}
+        handleSort={handleSort}
+        handleFilter={handleFilter}
+        isEditMode={isEditMode}
+        setIsEditMode={setIsEditMode}
+        openAddEditModal={openAddEditModal}
+        setOpenAddEditModal={setOpenAddEditModal}
+        openDeleteModal={openDeleteModal}
+        setOpenDeleteModal={setOpenDeleteModal}
+        deleteMovie={deleteMovie}
+        selectedMovie={selectedMovie}
+        setSelectedMovie={setSelectedMovie}
+        editMovie={editMovie}
+        addMovie={addMovie}
+        showDetail={showDetail}
+        setShowDetail={setShowDetail}
+        setDetailedMovie={setDetailedMovie}
+      />
+      <Footer />
+    </>
+  );
 }
 
 export default HomePage;

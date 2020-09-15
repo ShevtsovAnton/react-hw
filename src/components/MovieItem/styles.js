@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   cardMedia: {
-    height: 400
+    height: 400,
+    cursor: 'pointer'
   },
   cardContent: {
     flexGrow: 1,

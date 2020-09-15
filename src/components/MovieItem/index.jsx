@@ -12,13 +12,16 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
 import baseUrl from '../../utils/api';
 import useStyles from './styles';
+import movieType from '../../utils/movie.type';
 
 export default function MovieItem({
   movie,
   setIsEditMode,
   setOpenAddEditModal,
   setOpenDeleteModal,
-  setSelectedMovie
+  setSelectedMovie,
+  setShowDetail,
+  setDetailedMovie
 }) {
   const classes = useStyles();
   const { title, releaseDate, genres, backdropPath } = movie;
@@ -47,6 +50,17 @@ export default function MovieItem({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleImageClick = () => {
+    setDetailedMovie(movie);
+    setShowDetail(true);
+  };
+
+  // const handleImageClick = useCallback(() => {
+  //   window.scrollTo(0, 0);
+  //   setSelectedMovie(movie);
+  //   setShowDetail(true);
+  // }, [selectedMovie]);
 
   return (
     <>
@@ -89,6 +103,7 @@ export default function MovieItem({
           className={classes.cardMedia}
           image={`${baseUrl}${backdropPath} `}
           title="Image title"
+          onClick={handleImageClick}
         />
         <CardContent className={classes.cardContent}>
           <div className={classes.titleAndYear}>
@@ -105,15 +120,11 @@ export default function MovieItem({
 }
 
 MovieItem.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    backdropPath: PropTypes.string.isRequired
-  }).isRequired,
+  movie: movieType.isRequired,
   setIsEditMode: PropTypes.func.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
-  setSelectedMovie: PropTypes.func.isRequired
+  setSelectedMovie: PropTypes.func.isRequired,
+  setShowDetail: PropTypes.func.isRequired,
+  setDetailedMovie: PropTypes.func.isRequired
 };

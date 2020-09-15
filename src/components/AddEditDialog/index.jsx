@@ -14,209 +14,189 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import withStyles from '@material-ui/core/styles/withStyles';
 
-import styles from './styles';
+import useStyles from './styles';
 import { genres, defaultMovie } from '../../utils/misc';
+import movieType from '../../utils/movie.type';
 
-class AddEditDialog extends React.Component {
-  handleReset = () => {
-    const { selectedMovie, setSelectedMovie } = this.props;
+function AddEditDialog({
+  selectedMovie,
+  setSelectedMovie,
+  setOpenAddEditModal,
+  editMovie,
+  addMovie,
+  isEditMode,
+  openAddEditModal
+}) {
+  const classes = useStyles();
+  const handleReset = () => {
     setSelectedMovie({
       ...selectedMovie,
       ...defaultMovie
     });
   };
 
-  handleGenres = event => {
-    const { selectedMovie, setSelectedMovie } = this.props;
+  const handleGenres = event => {
     setSelectedMovie({
       ...selectedMovie,
       genres: event.target.value
     });
   };
 
-  handleChange = (event, field) => {
-    const { selectedMovie, setSelectedMovie } = this.props;
+  const handleChange = (event, field) => {
     setSelectedMovie({
       ...selectedMovie,
       [field]: event.target.value
     });
   };
 
-  handleClose = () => {
-    const { setOpenAddEditModal, setSelectedMovie } = this.props;
+  const handleClose = () => {
     setOpenAddEditModal(false);
     setSelectedMovie(null);
   };
 
-  submit = () => {
-    const { editMovie, selectedMovie, addMovie } = this.props;
+  const submit = () => {
     if (!selectedMovie.id) {
       addMovie(selectedMovie);
     } else {
       editMovie(selectedMovie);
     }
-    this.handleClose();
+    handleClose();
   };
-
-  render() {
-    const { classes, isEditMode, openAddEditModal, selectedMovie } = this.props;
-    return (
-      <>
-        {selectedMovie ? (
-          <Dialog
-            open={openAddEditModal}
-            onClose={this.handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {isEditMode ? 'EDIT MOVIE' : 'ADD MOVIE'}
-            </DialogTitle>
-            <IconButton
-              aria-label="close"
-              className={classes.closeButton}
-              onClick={this.handleClose}
-            >
-              <CloseIcon />
-            </IconButton>
-            <DialogContent>
-              <form className={classes.root} noValidate autoComplete="off">
-                <TextField
-                  className={classes.field}
-                  label="MOVIE ID"
-                  InputLabelProps={{
-                    style: { color: '#f65261' }
-                  }}
-                  type="text"
-                  value={selectedMovie.id ? selectedMovie.id : ''}
-                  fullWidth
-                  disabled
-                />
-                <TextField
-                  className={classes.field}
-                  label="TITLE"
-                  InputLabelProps={{
-                    style: { color: '#f65261' }
-                  }}
-                  type="text"
-                  value={selectedMovie.title}
-                  fullWidth
-                  onChange={e => this.handleChange(e, 'title')}
-                />
-                <TextField
-                  className={classes.field}
-                  label="RELEASE DATE"
-                  InputLabelProps={{
-                    style: { color: '#f65261' },
-                    shrink: true
-                  }}
-                  type="date"
-                  value={selectedMovie.releaseDate}
-                  fullWidth
-                  onChange={e => this.handleChange(e, 'releaseDate')}
-                />
-                <TextField
-                  className={classes.field}
-                  label="MOVIE URL"
-                  InputLabelProps={{
-                    style: { color: '#f65261' }
-                  }}
-                  type="text"
-                  value={selectedMovie.movieUrl}
-                  fullWidth
-                  onChange={e => this.handleChange(e, 'movieUrl')}
-                />
-                <FormControl className={classes.select}>
-                  <InputLabel id="genres" className={classes.label}>
-                    GENRES
-                  </InputLabel>
-                  <Select
-                    labelId="genres"
-                    id="genres__select"
-                    multiple
-                    value={selectedMovie.genres}
-                    onChange={this.handleGenres}
-                    input={<Input id="select__multiple" />}
-                    renderValue={selected => (
-                      <div>
-                        {selected.map(value => (
-                          <Chip key={value} label={value} />
-                        ))}
-                      </div>
-                    )}
-                  >
-                    {genres.map(genre => (
-                      <MenuItem key={genre} value={genre}>
-                        {genre}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-                <TextField
-                  className={classes.field}
-                  label="OVERVIEW"
-                  InputLabelProps={{
-                    style: { color: '#f65261' }
-                  }}
-                  type="text"
-                  value={selectedMovie.overview}
-                  onChange={e => this.handleChange(e, 'overview')}
-                  fullWidth
-                />
-                <TextField
-                  className={classes.field}
-                  label="RUNTIME"
-                  InputLabelProps={{
-                    style: { color: '#f65261' }
-                  }}
-                  type="number"
-                  value={selectedMovie.runtime}
-                  onChange={e => this.handleChange(e, 'runtime')}
-                  fullWidth
-                />
-              </form>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleReset} color="primary">
-                RESET
-              </Button>
-              <Button onClick={this.submit} color="primary" autoFocus>
-                SUBMIT
-              </Button>
-            </DialogActions>
-          </Dialog>
-        ) : (
-          ''
-        )}
-      </>
-    );
-  }
+  return (
+    <>
+      {selectedMovie ? (
+        <Dialog
+          open={openAddEditModal}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {isEditMode ? 'EDIT MOVIE' : 'ADD MOVIE'}
+          </DialogTitle>
+          <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
+          <DialogContent>
+            <form className={classes.root} noValidate autoComplete="off">
+              <TextField
+                className={classes.field}
+                label="MOVIE ID"
+                InputLabelProps={{
+                  style: { color: '#f65261' }
+                }}
+                type="text"
+                value={selectedMovie.id ? selectedMovie.id : ''}
+                fullWidth
+                disabled
+              />
+              <TextField
+                className={classes.field}
+                label="TITLE"
+                InputLabelProps={{
+                  style: { color: '#f65261' }
+                }}
+                type="text"
+                value={selectedMovie.title}
+                fullWidth
+                onChange={e => handleChange(e, 'title')}
+              />
+              <TextField
+                className={classes.field}
+                label="RELEASE DATE"
+                InputLabelProps={{
+                  style: { color: '#f65261' },
+                  shrink: true
+                }}
+                type="date"
+                value={selectedMovie.releaseDate}
+                fullWidth
+                onChange={e => handleChange(e, 'releaseDate')}
+              />
+              <TextField
+                className={classes.field}
+                label="MOVIE URL"
+                InputLabelProps={{
+                  style: { color: '#f65261' }
+                }}
+                type="text"
+                value={selectedMovie.movieUrl}
+                fullWidth
+                onChange={e => handleChange(e, 'movieUrl')}
+              />
+              <FormControl className={classes.select}>
+                <InputLabel id="genres" className={classes.label}>
+                  GENRES
+                </InputLabel>
+                <Select
+                  labelId="genres"
+                  id="genres__select"
+                  multiple
+                  value={selectedMovie.genres}
+                  onChange={handleGenres}
+                  input={<Input id="select__multiple" />}
+                  renderValue={selected => (
+                    <div>
+                      {selected.map(value => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </div>
+                  )}
+                >
+                  {genres.map(genre => (
+                    <MenuItem key={genre} value={genre}>
+                      {genre}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <TextField
+                className={classes.field}
+                label="OVERVIEW"
+                InputLabelProps={{
+                  style: { color: '#f65261' }
+                }}
+                type="text"
+                value={selectedMovie.overview}
+                onChange={e => handleChange(e, 'overview')}
+                fullWidth
+              />
+              <TextField
+                className={classes.field}
+                label="RUNTIME"
+                InputLabelProps={{
+                  style: { color: '#f65261' }
+                }}
+                type="number"
+                value={selectedMovie.runtime}
+                onChange={e => handleChange(e, 'runtime')}
+                fullWidth
+              />
+            </form>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleReset} color="primary">
+              RESET
+            </Button>
+            <Button onClick={submit} color="primary" autoFocus>
+              SUBMIT
+            </Button>
+          </DialogActions>
+        </Dialog>
+      ) : (
+        ''
+      )}
+    </>
+  );
 }
 
 AddEditDialog.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string,
-    closeButton: PropTypes.string,
-    field: PropTypes.string,
-    select: PropTypes.string,
-    label: PropTypes.string
-  }).isRequired,
   isEditMode: PropTypes.bool.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
   openAddEditModal: PropTypes.bool.isRequired,
   setSelectedMovie: PropTypes.func.isRequired,
-  selectedMovie: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    releaseDate: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    backdropPath: PropTypes.string,
-    overview: PropTypes.string,
-    movieUrl: PropTypes.string,
-    runtime: PropTypes.number
-  }),
+  selectedMovie: movieType,
   editMovie: PropTypes.func.isRequired,
   addMovie: PropTypes.func.isRequired
 };
@@ -225,4 +205,4 @@ AddEditDialog.defaultProps = {
   selectedMovie: null
 };
 
-export default withStyles(styles)(AddEditDialog);
+export default AddEditDialog;

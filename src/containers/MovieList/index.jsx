@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import useStyles from './styles';
 
 import MovieItem from '../../components/MovieItem';
 import Filter from '../../components/Filter';
@@ -11,7 +12,7 @@ import Sort from '../../components/Sort';
 import ModalMovieDeletion from '../../components/ModalMovieDeletion';
 import AddEditDialog from '../../components/AddEditDialog';
 import getCountMessage from './helpers';
-import useStyles from './styles';
+import movieType from '../../utils/movie.type';
 
 export default function MovieList({
   movies,
@@ -27,15 +28,17 @@ export default function MovieList({
   setSelectedMovie,
   selectedMovie,
   editMovie,
-  addMovie
+  addMovie,
+  setShowDetail,
+  setDetailedMovie
 }) {
   const classes = useStyles();
   const countMessage = getCountMessage(movies);
 
-  const closeModalMovieDeletion = () => {
+  const closeModalMovieDeletion = useCallback(() => {
     setOpenDeleteModal(false);
     setSelectedMovie(null);
-  };
+  });
 
   return (
     <Container className={classes.main} maxWidth="lg">
@@ -55,6 +58,8 @@ export default function MovieList({
               setOpenAddEditModal={setOpenAddEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
               setSelectedMovie={setSelectedMovie}
+              setShowDetail={setShowDetail}
+              setDetailedMovie={setDetailedMovie}
             />
           </Grid>
         ))}
@@ -78,14 +83,7 @@ export default function MovieList({
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      releaseDate: PropTypes.string,
-      genres: PropTypes.arrayOf(PropTypes.string),
-      backdropPath: PropTypes.string
-    }).isRequired
-  ).isRequired,
+  movies: PropTypes.arrayOf(movieType).isRequired,
   handleSort: PropTypes.func.isRequired,
   handleFilter: PropTypes.func.isRequired,
   setIsEditMode: PropTypes.func.isRequired,
@@ -95,16 +93,12 @@ MovieList.propTypes = {
   setOpenDeleteModal: PropTypes.func.isRequired,
   openDeleteModal: PropTypes.bool.isRequired,
   deleteMovie: PropTypes.func.isRequired,
-  selectedMovie: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    releaseDate: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    backdropPath: PropTypes.string
-  }),
+  selectedMovie: movieType,
   setSelectedMovie: PropTypes.func.isRequired,
   editMovie: PropTypes.func.isRequired,
-  addMovie: PropTypes.func.isRequired
+  addMovie: PropTypes.func.isRequired,
+  setShowDetail: PropTypes.func.isRequired,
+  setDetailedMovie: PropTypes.func.isRequired
 };
 
 MovieList.defaultProps = {
