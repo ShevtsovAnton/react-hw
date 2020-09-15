@@ -3,7 +3,7 @@ export const genres = ['Comedy', 'Thriller', 'Drama', 'Romance', 'Documentary', 
 export const defaultMovie = {
   id: 0,
   title: '',
-  releaseDate: '',
+  release_date: '',
   genres: [],
   movieUrl: '',
   overview: '',

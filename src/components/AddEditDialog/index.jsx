@@ -110,9 +110,9 @@ function AddEditDialog({
                   shrink: true
                 }}
                 type="date"
-                value={selectedMovie.releaseDate}
+                value={selectedMovie.release_date}
                 fullWidth
-                onChange={e => handleChange(e, 'releaseDate')}
+                onChange={e => handleChange(e, 'release_date')}
               />
               <TextField
                 className={classes.field}

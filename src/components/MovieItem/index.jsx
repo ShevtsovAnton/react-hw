@@ -24,8 +24,8 @@ export default function MovieItem({
   setDetailedMovie
 }) {
   const classes = useStyles();
-  const { title, releaseDate, genres, backdropPath } = movie;
-  const releaseYear = releaseDate.substr(0, 4);
+  const { title, release_date, genres, backdropPath } = movie;
+  const releaseYear = release_date.substr(0, 4);
   const genre = genres.join(' & ');
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -52,6 +52,10 @@ export default function MovieItem({
   };
 
   const handleImageClick = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     setDetailedMovie(movie);
     setShowDetail(true);
   }, [movie]);

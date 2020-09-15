@@ -8,7 +8,7 @@ import useStyles from './styles';
 
 function Sort({ handleSort }) {
   const classes = useStyles();
-  const [sortBy, setSortBy] = useState('releaseDate');
+  const [sortBy, setSortBy] = useState('release_date');
   const sort = e => {
     const { value } = e.target;
     setSortBy(value);
@@ -28,7 +28,7 @@ function Sort({ handleSort }) {
           displayEmpty
           onChange={sort}
         >
-          <MenuItem value="releaseDate">RELEASE DATE</MenuItem>
+          <MenuItem value="release_date">RELEASE DATE</MenuItem>
           <MenuItem value="title">TITLE</MenuItem>
         </Select>
       </FormControl>

@@ -8,10 +8,10 @@ const movieType = PropTypes.shape({
   mediaType: PropTypes.string,
   movieUrl: PropTypes.string,
   overview: PropTypes.string,
-  posterPath: PropTypes.string,
-  releaseDate: PropTypes.string,
+  poster_path: PropTypes.string,
+  release_date: PropTypes.string,
   title: PropTypes.string,
-  voteAverage: PropTypes.number
+  vote_average: PropTypes.number
 });
 
 export default movieType;
