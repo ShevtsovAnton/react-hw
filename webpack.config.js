@@ -14,20 +14,20 @@ const config = env => ({
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         enforce: 'pre',
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'eslint-loader',
+        loader: 'eslint-loader'
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -35,14 +35,14 @@ const config = env => ({
           {
             loader: 'url-loader',
             options: {
-              limit: 8192,
-            },
-          },
-        ],
+              limit: 8192
+            }
+          }
+        ]
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: 'file-loader',
+        use: 'file-loader'
       },
       {
         test: /\.(css|scss|sass)$/,
@@ -52,12 +52,12 @@ const config = env => ({
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
-            },
+              importLoaders: 1
+            }
           },
           'postcss-loader',
-          'sass-loader',
-        ],
+          'sass-loader'
+        ]
       },
       {
         test: /\.module\.(css|scss|sass)$/,
@@ -67,31 +67,31 @@ const config = env => ({
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: true,
-            },
+              modules: true
+            }
           },
           'postcss-loader',
-          'sass-loader',
-        ],
-      },
-    ],
+          'sass-loader'
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './dist'
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
+      template: 'public/index.html'
     }),
     env && env.analyze ? new BundleAnalyzerPlugin() : new DummyPlugin(),
     env && env.NODE_ENV === 'production'
       ? new MiniCssExtractPlugin({ chunkFilename: '[id].css', filename: '[name].css' })
-      : new DummyPlugin(),
-  ],
+      : new DummyPlugin()
+  ]
 });
 
 module.exports = env => config(env);
