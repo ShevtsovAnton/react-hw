@@ -8,7 +8,7 @@ import movieType from '../../utils/movie.type';
 
 export default function MovieDetail({ movie }) {
   const classes = useStyles();
-  const { title, release_date, poster_path, overview, vote_average, duration, mediaType } = movie;
+  const { title, release_date, poster_path, overview, vote_average, runtime, mediaType } = movie;
   const releaseYear = release_date.substr(0, 4);
 
   return (
@@ -27,7 +27,7 @@ export default function MovieDetail({ movie }) {
             <div className={classes.detailsBlock}>
               <Typography variant="h5">{releaseYear}</Typography>
               <Typography variant="h5" className={classes.duration}>
-                {`${duration} min`}
+                {`${runtime} min`}
               </Typography>
             </div>
             <Typography variant="body1">{overview}</Typography>

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const movieType = PropTypes.shape({
   backdropPath: PropTypes.string,
-  duration: PropTypes.number,
+  runtime: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.string),
   id: PropTypes.number,
   mediaType: PropTypes.string,

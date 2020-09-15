@@ -17,7 +17,7 @@ const moviesList = [
     poster_path: '/fjCezXiQWfGuNf4t7LruKky7kwV.jpg',
     popularity: 98.969,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     original_name: 'The Umbrella Academy',
@@ -38,7 +38,7 @@ const moviesList = [
     origin_country: ['US'],
     popularity: 82.131,
     mediaType: 'tv',
-    duration: 120
+    runtime: 120
   },
   {
     id: 521034,
@@ -58,7 +58,7 @@ const moviesList = [
     poster_path: '/5MSDwUcqnGodFTvtlLiLKK0XKS.jpg',
     popularity: 114.229,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     id: 516486,
@@ -78,7 +78,7 @@ const moviesList = [
     poster_path: '/kjMbDciooTbJPofVXgAoFjfX8Of.jpg',
     popularity: 75.131,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     id: 703745,
@@ -98,7 +98,7 @@ const moviesList = [
     poster_path: '/bKthjUmxjHjvJK8FktFfQdmwP12.jpg',
     popularity: 73.686,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     id: 703771,
@@ -118,7 +118,7 @@ const moviesList = [
     poster_path: '/vFIHbiy55smzi50RmF8LQjmpGcx.jpg',
     popularity: 92.23,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     id: 583083,
@@ -138,7 +138,7 @@ const moviesList = [
     poster_path: '/mb7wQv0adK3kjOUr9n93mANHhPJ.jpg',
     popularity: 79.775,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     id: 385103,
@@ -158,7 +158,7 @@ const moviesList = [
     poster_path: '/jHo2M1OiH9Re33jYtUQdfzPeUkx.jpg',
     popularity: 74.988,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     id: 547016,
@@ -178,7 +178,7 @@ const moviesList = [
     poster_path: '/cjr4NWURcVN3gW5FlHeabgBHLrY.jpg',
     popularity: 64.54,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   },
   {
     id: 612706,
@@ -198,7 +198,7 @@ const moviesList = [
     poster_path: '/b5XfICAvUe8beWExBz97i0Qw4Qh.jpg',
     popularity: 133.64,
     mediaType: 'movie',
-    duration: 120
+    runtime: 120
   }
 ];
 
