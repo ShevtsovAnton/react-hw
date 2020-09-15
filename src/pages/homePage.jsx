@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 
 import MovieList from '../containers/MovieList';
 import Header from '../containers/Header';
@@ -18,8 +19,13 @@ function HomePage() {
   const [detailedMovie, setDetailedMovie] = useState(null);
 
   useEffect(() => {
-    setMovies([...moviesList]);
-  }, [moviesList]);
+    const fetchMovies = async () => {
+      const result = await axios('http://localhost:4000/movies');
+      console.dir(result.data.data);
+      setMovies([...result.data.data]);
+    };
+    fetchMovies();
+  }, []);
 
   useDetailedMovieLogger(detailedMovie);
 

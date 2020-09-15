@@ -10,7 +10,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
-import baseUrl from '../../utils/api';
 import useStyles from './styles';
 import movieType from '../../utils/movie.type';
 
@@ -24,7 +23,7 @@ export default function MovieItem({
   setDetailedMovie
 }) {
   const classes = useStyles();
-  const { title, release_date, genres, backdropPath } = movie;
+  const { title, release_date, genres, poster_path } = movie;
   const releaseYear = release_date.substr(0, 4);
   const genre = genres.join(' & ');
 
@@ -99,7 +98,7 @@ export default function MovieItem({
         />
         <CardMedia
           className={classes.cardMedia}
-          image={`${baseUrl}${backdropPath} `}
+          image={poster_path}
           title="Image title"
           onClick={handleImageClick}
         />

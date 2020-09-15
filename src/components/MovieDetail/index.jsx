@@ -2,7 +2,6 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import baseUrl from '../../utils/api';
 import useStyles from './styles';
 import movieType from '../../utils/movie.type';
 
@@ -10,13 +9,13 @@ export default function MovieDetail({ movie }) {
   const classes = useStyles();
   const { title, release_date, poster_path, overview, vote_average, runtime, mediaType } = movie;
   const releaseYear = release_date.substr(0, 4);
-
+  console.log(poster_path);
   return (
     <>
       <Container className={classes.main} maxWidth="lg">
         <Grid container spacing={2}>
           <Grid item xs={4}>
-            <img alt="movie_poster" src={`${baseUrl}${poster_path}`} className={classes.image} />
+            <img alt="movie_poster" src={poster_path} className={classes.image} />
           </Grid>
           <Grid item xs={8}>
             <div className={classes.header}>
