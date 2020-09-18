@@ -1,13 +1,13 @@
 const getSortedMovies = (movies, sortBy) => {
   const sortedMovies = [
     ...movies.sort((a, b) => {
-      const valueA = a[sortBy].toUpperCase();
-      const valueB = b[sortBy].toUpperCase();
+      const valueA = a[sortBy].toString().toUpperCase();
+      const valueB = b[sortBy].toString().toUpperCase();
       if (valueA < valueB) {
-        return -1;
+        return 1;
       }
       if (valueA > valueB) {
-        return 1;
+        return -1;
       }
       return 0;
     })

@@ -31,6 +31,7 @@ function Sort() {
         >
           <MenuItem value="release_date">RELEASE DATE</MenuItem>
           <MenuItem value="title">TITLE</MenuItem>
+          <MenuItem value="vote_average">RATING</MenuItem>
         </Select>
       </FormControl>
     </div>
