@@ -16,8 +16,6 @@ import movieType from '../../utils/movie.type';
 
 export default function MovieList({
   movies,
-  handleSort,
-  handleFilter,
   setIsEditMode,
   isEditMode,
   setOpenAddEditModal,
@@ -43,8 +41,8 @@ export default function MovieList({
   return (
     <Container className={classes.main} maxWidth="lg">
       <Grid className={classes.controlGrid} container justify="space-between">
-        <Filter handleFilter={handleFilter} />
-        <Sort handleSort={handleSort} />
+        <Filter />
+        <Sort />
       </Grid>
       <Typography variant="h6" className={classes.found}>
         {countMessage}
@@ -84,8 +82,6 @@ export default function MovieList({
 
 MovieList.propTypes = {
   movies: PropTypes.arrayOf(movieType).isRequired,
-  handleSort: PropTypes.func.isRequired,
-  handleFilter: PropTypes.func.isRequired,
   setIsEditMode: PropTypes.func.isRequired,
   openAddEditModal: PropTypes.bool.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
