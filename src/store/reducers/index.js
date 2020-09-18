@@ -48,6 +48,30 @@ const rootReducer = (state = initialState, action) => {
         searchQuery: action.payload
       };
 
+    case actions.ADD_MOVIE_SUCCESS:
+      return {
+        ...state,
+        movies: [...state.movies, action.payload]
+      };
+
+    case actions.EDIT_MOVIE_SUCCESS: {
+      const foundIndex = state.movies.findIndex(movie => movie.id === action.payload.id);
+      return {
+        ...state,
+        movies: [
+          ...state.movies.slice(0, foundIndex, 1),
+          action.payload,
+          ...state.movies.slice(foundIndex + 1)
+        ]
+      };
+    }
+
+    case actions.DELETE_MOVIE_SUCCESS:
+      return {
+        ...state,
+        movies: [...state.movies.filter(movie => movie.id !== action.payload)]
+      };
+
     default:
       return state;
   }

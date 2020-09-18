@@ -14,6 +14,8 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { useDispatch } from 'react-redux';
+import { addMovieRedux, editMovieRedux } from '../../store/actions/movie';
 
 import useStyles from './styles';
 import { genres, defaultMovie } from '../../utils/misc';
@@ -23,15 +25,13 @@ function AddEditDialog({
   selectedMovie,
   setSelectedMovie,
   setOpenAddEditModal,
-  editMovie,
-  addMovie,
   isEditMode,
   openAddEditModal
 }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const handleReset = () => {
     setSelectedMovie({
-      ...selectedMovie,
       ...defaultMovie
     });
   };
@@ -57,9 +57,9 @@ function AddEditDialog({
 
   const submit = () => {
     if (!selectedMovie.id) {
-      addMovie(selectedMovie);
+      dispatch(addMovieRedux(selectedMovie));
     } else {
-      editMovie(selectedMovie);
+      dispatch(editMovieRedux(selectedMovie));
     }
     handleClose();
   };
@@ -80,17 +80,20 @@ function AddEditDialog({
           </IconButton>
           <DialogContent>
             <form className={classes.root} noValidate autoComplete="off">
-              <TextField
-                className={classes.field}
-                label="MOVIE ID"
-                InputLabelProps={{
-                  style: { color: '#f65261' }
-                }}
-                type="text"
-                value={selectedMovie.id ? selectedMovie.id : ''}
-                fullWidth
-                disabled
-              />
+              {isEditMode ? (
+                <TextField
+                  className={classes.field}
+                  label="MOVIE ID"
+                  InputLabelProps={{
+                    style: { color: '#f65261' }
+                  }}
+                  type="text"
+                  value={selectedMovie.id ? selectedMovie.id : ''}
+                  fullWidth
+                  disabled
+                />
+              ) : null}
+
               <TextField
                 className={classes.field}
                 label="TITLE"
@@ -121,7 +124,7 @@ function AddEditDialog({
                   style: { color: '#f65261' }
                 }}
                 type="text"
-                value={selectedMovie.movieUrl}
+                value={selectedMovie.poster_path}
                 fullWidth
                 onChange={e => handleChange(e, 'movieUrl')}
               />
@@ -196,9 +199,7 @@ AddEditDialog.propTypes = {
   setOpenAddEditModal: PropTypes.func.isRequired,
   openAddEditModal: PropTypes.bool.isRequired,
   setSelectedMovie: PropTypes.func.isRequired,
-  selectedMovie: movieType,
-  editMovie: PropTypes.func.isRequired,
-  addMovie: PropTypes.func.isRequired
+  selectedMovie: movieType
 };
 
 AddEditDialog.defaultProps = {

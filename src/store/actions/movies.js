@@ -6,7 +6,6 @@ export const getMoviesRequest = () => ({
 });
 
 export const getMoviesSuccess = movies => {
-  console.log('MOVIES IN ACTION', movies);
   return {
     type: actions.GET_MOVIES_SUCCESS,
     movies

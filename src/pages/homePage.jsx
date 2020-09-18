@@ -48,7 +48,6 @@ function HomePage() {
     if (searchQuery) {
       return search(sortedMovies, searchQuery);
     }
-    // const searchResult = search(sortedMovies, searchQuery);
     return filterMovies(sortedMovies, filterBy);
   });
 
@@ -57,30 +56,6 @@ function HomePage() {
   }, [dispatch]);
 
   useDetailedMovieLogger(detailedMovie);
-
-  const deleteMovie = useCallback(() => {
-    // const updatedMovieList = movies.filter(movie => movie.id !== selectedMovie.id);
-    // setMovies(updatedMovieList);
-    setSelectedMovie(null);
-  }, [selectedMovie]);
-
-  const editMovie = useCallback(
-    // editedMovie => {
-    () => {
-      // const foundIndex = movies.findIndex(movie => movie.id === editedMovie.id);
-      // setMovies([...movies.slice(0, foundIndex, 1), editedMovie, ...movies.slice(foundIndex + 1)]);
-    },
-    [movies]
-  );
-
-  const addMovie = useCallback(
-    // movie => {
-    () => {
-      // const newMovie = { ...movie, id: new Date().getTime() };
-      // setMovies([...movies, newMovie]);
-    },
-    [movies]
-  );
 
   const openModalAddMovie = useCallback(() => {
     setSelectedMovie({ ...defaultMovie });
@@ -104,11 +79,8 @@ function HomePage() {
         setOpenAddEditModal={setOpenAddEditModal}
         openDeleteModal={openDeleteModal}
         setOpenDeleteModal={setOpenDeleteModal}
-        deleteMovie={deleteMovie}
         selectedMovie={selectedMovie}
         setSelectedMovie={setSelectedMovie}
-        editMovie={editMovie}
-        addMovie={addMovie}
         showDetail={showDetail}
         setShowDetail={setShowDetail}
         setDetailedMovie={setDetailedMovie}

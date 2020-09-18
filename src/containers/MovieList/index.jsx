@@ -22,11 +22,8 @@ export default function MovieList({
   openAddEditModal,
   setOpenDeleteModal,
   openDeleteModal,
-  deleteMovie,
   setSelectedMovie,
   selectedMovie,
-  editMovie,
-  addMovie,
   setShowDetail,
   setDetailedMovie
 }) {
@@ -65,16 +62,14 @@ export default function MovieList({
       <ModalMovieDeletion
         openDeleteModal={openDeleteModal}
         closeModalMovieDeletion={closeModalMovieDeletion}
-        deleteMovie={deleteMovie}
+        selectedMovie={selectedMovie}
       />
       <AddEditDialog
         isEditMode={isEditMode}
         openAddEditModal={openAddEditModal}
         setOpenAddEditModal={setOpenAddEditModal}
         selectedMovie={selectedMovie}
-        editMovie={editMovie}
         setSelectedMovie={setSelectedMovie}
-        addMovie={addMovie}
       />
     </Container>
   );
@@ -88,11 +83,8 @@ MovieList.propTypes = {
   isEditMode: PropTypes.bool.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
   openDeleteModal: PropTypes.bool.isRequired,
-  deleteMovie: PropTypes.func.isRequired,
   selectedMovie: movieType,
   setSelectedMovie: PropTypes.func.isRequired,
-  editMovie: PropTypes.func.isRequired,
-  addMovie: PropTypes.func.isRequired,
   setShowDetail: PropTypes.func.isRequired,
   setDetailedMovie: PropTypes.func.isRequired
 };
