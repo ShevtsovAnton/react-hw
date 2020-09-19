@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
 import { useSelector } from 'react-redux';
 import useStyles from './styles';
+import { imageFallbackSrc } from '../../utils/misc';
 
 export default function MovieItem({
   id,
@@ -60,6 +61,11 @@ export default function MovieItem({
     setShowDetail(true);
   }, [movie]);
 
+  const handleImageError = e => {
+    e.target.onerror = null;
+    e.target.src = imageFallbackSrc;
+  };
+
   return (
     <>
       <Card className={classes.card}>
@@ -98,10 +104,12 @@ export default function MovieItem({
           }
         />
         <CardMedia
+          component="img"
           className={classes.cardMedia}
           image={poster_path}
           title="Image title"
           onClick={handleImageClick}
+          onError={handleImageError}
         />
         <CardContent className={classes.cardContent}>
           <div className={classes.titleAndYear}>

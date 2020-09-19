@@ -8,3 +8,6 @@ export const defaultMovie = {
   runtime: 0,
   poster_path: 'https://image.tmdb.org/t/p/original/fKtYXUhX5fxMxzQfyUcQW9Shik6.jpg'
 };
+
+export const imageFallbackSrc =
+  'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg';
