@@ -25,12 +25,12 @@ function HomePage() {
     dispatch(getMovies());
   }, [dispatch]);
 
-  const movies = useSelector(state => {
+  const movieIds = useSelector(state => {
     const sortedMovies = getSortedMovies(state.movies, sortBy);
     if (searchQuery) {
-      return search(sortedMovies, searchQuery);
+      return search(sortedMovies, searchQuery).map(movie => movie.id);
     }
-    return filterMovies(sortedMovies, filterBy);
+    return filterMovies(sortedMovies, filterBy).map(movie => movie.id);
   });
 
   const openModalAddMovie = useCallback(() => {
@@ -48,7 +48,7 @@ function HomePage() {
         detailedMovie={detailedMovie}
       />
       <MovieList
-        movies={movies}
+        movieIds={movieIds}
         isEditMode={isEditMode}
         setIsEditMode={setIsEditMode}
         openAddEditModal={openAddEditModal}

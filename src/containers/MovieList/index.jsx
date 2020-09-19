@@ -15,7 +15,6 @@ import getCountMessage from './helpers';
 import movieType from '../../utils/movie.type';
 
 export default function MovieList({
-  movies,
   setIsEditMode,
   isEditMode,
   setOpenAddEditModal,
@@ -25,10 +24,11 @@ export default function MovieList({
   setSelectedMovie,
   selectedMovie,
   setShowDetail,
-  setDetailedMovie
+  setDetailedMovie,
+  movieIds
 }) {
   const classes = useStyles();
-  const countMessage = getCountMessage(movies);
+  const countMessage = getCountMessage(movieIds);
 
   const closeModalMovieDeletion = useCallback(() => {
     setOpenDeleteModal(false);
@@ -45,10 +45,10 @@ export default function MovieList({
         {countMessage}
       </Typography>
       <Grid container spacing={4}>
-        {movies.map(movie => (
-          <Grid item key={movie.id} xs={12} sm={6} md={4}>
+        {movieIds.map(id => (
+          <Grid item key={id} xs={12} sm={6} md={4}>
             <MovieItem
-              movie={movie}
+              id={id}
               setIsEditMode={setIsEditMode}
               setOpenAddEditModal={setOpenAddEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
@@ -76,7 +76,6 @@ export default function MovieList({
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(movieType).isRequired,
   setIsEditMode: PropTypes.func.isRequired,
   openAddEditModal: PropTypes.bool.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
@@ -86,7 +85,8 @@ MovieList.propTypes = {
   selectedMovie: movieType,
   setSelectedMovie: PropTypes.func.isRequired,
   setShowDetail: PropTypes.func.isRequired,
-  setDetailedMovie: PropTypes.func.isRequired
+  setDetailedMovie: PropTypes.func.isRequired,
+  movieIds: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 
 MovieList.defaultProps = {

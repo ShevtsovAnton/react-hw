@@ -4,10 +4,10 @@ const getSortedMovies = (movies, sortBy) => {
       const valueA = a[sortBy] && a[sortBy].toString().toUpperCase();
       const valueB = b[sortBy] && b[sortBy].toString().toUpperCase();
       if (valueA < valueB) {
-        return -1;
+        return 1;
       }
       if (valueA > valueB) {
-        return 1;
+        return -1;
       }
       return 0;
     })

@@ -10,11 +10,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
+import { useSelector } from 'react-redux';
 import useStyles from './styles';
-import movieType from '../../utils/movie.type';
 
 export default function MovieItem({
-  movie,
+  id,
   setIsEditMode,
   setOpenAddEditModal,
   setOpenDeleteModal,
@@ -23,6 +23,7 @@ export default function MovieItem({
   setDetailedMovie
 }) {
   const classes = useStyles();
+  const movie = useSelector(state => state.movies.filter(movieItem => movieItem.id === id)[0]);
   const { title, release_date, genres, poster_path } = movie;
   const releaseYear = release_date.substr(0, 4);
   const genre = genres.join(' & ');
@@ -117,7 +118,7 @@ export default function MovieItem({
 }
 
 MovieItem.propTypes = {
-  movie: movieType.isRequired,
+  id: PropTypes.number.isRequired,
   setIsEditMode: PropTypes.func.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
