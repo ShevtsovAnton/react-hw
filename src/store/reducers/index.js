@@ -17,7 +17,6 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case actions.GET_MOVIES_SUCCESS:
-      console.log('REDUCER ACTION', action);
       return {
         ...state,
         movies: [...action.movies],

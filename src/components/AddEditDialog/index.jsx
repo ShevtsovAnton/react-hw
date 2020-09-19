@@ -15,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { useDispatch } from 'react-redux';
-import { addMovieRedux, editMovieRedux } from '../../store/actions/movie';
+import { addMovie, editMovie } from '../../store/actions/movie';
 
 import useStyles from './styles';
 import { genres, defaultMovie } from '../../utils/misc';
@@ -44,9 +44,11 @@ function AddEditDialog({
   };
 
   const handleChange = (event, field) => {
+    const value = field === 'runtime' ? +event.target.value : event.target.value;
+
     setSelectedMovie({
       ...selectedMovie,
-      [field]: event.target.value
+      [field]: value
     });
   };
 
@@ -57,9 +59,9 @@ function AddEditDialog({
 
   const submit = () => {
     if (!selectedMovie.id) {
-      dispatch(addMovieRedux(selectedMovie));
+      dispatch(addMovie(selectedMovie));
     } else {
-      dispatch(editMovieRedux(selectedMovie));
+      dispatch(editMovie(selectedMovie));
     }
     handleClose();
   };

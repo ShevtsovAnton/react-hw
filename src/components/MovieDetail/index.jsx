@@ -20,7 +20,7 @@ export default function MovieDetail({ movie }) {
           <Grid item xs={8}>
             <div className={classes.header}>
               <Typography variant="h3">{title}</Typography>
-              <div className={classes.rating}>{vote_average}</div>
+              <div className={classes.rating}>{vote_average || 'N/A'}</div>
             </div>
             <Typography variant="body1">{mediaType}</Typography>
             <div className={classes.detailsBlock}>

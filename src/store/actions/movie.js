@@ -11,12 +11,12 @@ export const addMovieError = error => ({
   payload: error
 });
 
-export const addMovieRedux = movie => {
+export const addMovie = movie => {
   return dispatch => {
     axios
       .post('http://localhost:4000/movies', movie)
       .then(response => {
-        dispatch(addMovieSuccess(response));
+        dispatch(addMovieSuccess(response.data));
       })
       .catch(error => {
         dispatch(addMovieError(error));
@@ -34,7 +34,7 @@ export const editMovieError = error => ({
   payload: error
 });
 
-export const editMovieRedux = id => {
+export const editMovie = id => {
   return dispatch => {
     axios
       .put('http://localhost:4000/movies', id)
