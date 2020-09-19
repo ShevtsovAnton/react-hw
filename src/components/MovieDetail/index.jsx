@@ -9,7 +9,6 @@ export default function MovieDetail({ movie }) {
   const classes = useStyles();
   const { title, release_date, poster_path, overview, vote_average, runtime, mediaType } = movie;
   const releaseYear = release_date.substr(0, 4);
-  console.log(poster_path);
   return (
     <>
       <Container className={classes.main} maxWidth="lg">
