@@ -15,7 +15,7 @@ const getSortedMovies = (movies, sortBy) => {
   return sortedMovies;
 };
 
-const filterMovies = (movies, filter) => {
+const getFilteredMovies = (movies, filter) => {
   if (filter === 'all') {
     return movies;
   }
@@ -26,7 +26,7 @@ const filterMovies = (movies, filter) => {
   return filteredList;
 };
 
-const search = (movies, query) => {
+const getSearchedMovies = (movies, query) => {
   if (query.trim() === '') {
     return movies;
   }
@@ -36,4 +36,4 @@ const search = (movies, query) => {
   return searchResults;
 };
 
-export { getSortedMovies, filterMovies, search };
+export { getSortedMovies, getFilteredMovies, getSearchedMovies };

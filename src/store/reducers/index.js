@@ -38,7 +38,8 @@ const rootReducer = (state = initialState, action) => {
     case actions.FILTER_BY:
       return {
         ...state,
-        filterBy: action.payload
+        filterBy: action.payload,
+        searchQuery: ''
       };
 
     case actions.SEARCH_BY:

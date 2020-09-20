@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import MovieList from '../containers/MovieList';
 import Header from '../containers/Header';
 import Footer from '../containers/Footer';
 import { defaultMovie } from '../utils/misc';
-import { filterMovies, getSortedMovies, search } from '../utils/helpers';
+import { getFilteredMoviesIds, getSearchedMoviesIds } from '../utils/selectors';
 import { getMovies } from '../store/actions/movies';
 
 function HomePage() {
@@ -15,22 +15,18 @@ function HomePage() {
   const [showDetail, setShowDetail] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [detailedMovie, setDetailedMovie] = useState(null);
-
-  const sortBy = useSelector(state => state.sortBy);
-  const filterBy = useSelector(state => state.filterBy);
-  const searchQuery = useSelector(state => state.searchQuery);
   const dispatch = useDispatch();
+  const searchQuery = useSelector(state => state.searchQuery);
 
   useEffect(() => {
     dispatch(getMovies());
   }, [dispatch]);
 
   const movieIds = useSelector(state => {
-    const sortedMovies = getSortedMovies(state.movies, sortBy);
-    if (searchQuery) {
-      return search(sortedMovies, searchQuery).map(movie => movie.id);
+    if (searchQuery === '') {
+      return getFilteredMoviesIds(state);
     }
-    return filterMovies(sortedMovies, filterBy).map(movie => movie.id);
+    return getSearchedMoviesIds(state);
   });
 
   const openModalAddMovie = useCallback(() => {

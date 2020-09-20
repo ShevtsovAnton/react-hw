@@ -15,6 +15,7 @@ export default function Search() {
 
   const search = () => {
     dispatch(searchBy(query));
+    setQuery('');
   };
 
   const handleKeyDown = event => {
