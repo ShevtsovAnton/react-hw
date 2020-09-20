@@ -22,12 +22,10 @@ function HomePage() {
     dispatch(getMovies());
   }, [dispatch]);
 
-  const movieIds = useSelector(state => {
-    if (searchQuery === '') {
-      return getFilteredMoviesIds(state);
-    }
-    return getSearchedMoviesIds(state);
-  });
+  const movieIds =
+    searchQuery === ''
+      ? useSelector(state => getFilteredMoviesIds(state))
+      : useSelector(state => getSearchedMoviesIds(state));
 
   const openModalAddMovie = useCallback(() => {
     setSelectedMovie({ ...defaultMovie });
