@@ -1,12 +1,13 @@
 export const genres = ['Comedy', 'Thriller', 'Drama', 'Romance', 'Documentary', 'Action', 'Horror'];
 
 export const defaultMovie = {
-  id: 0,
   title: '',
-  releaseDate: '',
+  release_date: '',
   genres: [],
-  movieUrl: '',
   overview: '',
   runtime: 0,
-  backdropPath: '/fKtYXUhX5fxMxzQfyUcQW9Shik6.jpg'
+  poster_path: 'https://image.tmdb.org/t/p/original/fKtYXUhX5fxMxzQfyUcQW9Shik6.jpg'
 };
+
+export const imageFallbackSrc =
+  'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg';

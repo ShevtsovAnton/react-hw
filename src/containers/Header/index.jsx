@@ -9,10 +9,10 @@ import useStyles from './styles';
 
 import Logo from '../../components/Logo';
 import MovieDetail from '../../components/MovieDetail';
-import FindMovie from '../../components/Search';
+import Search from '../../components/Search';
 import movieType from '../../utils/movie.type';
 
-function Header({ handleSearch, handleClick, showDetail, setShowDetail, detailedMovie }) {
+function Header({ handleClick, showDetail, setShowDetail, detailedMovie }) {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,7 @@ function Header({ handleSearch, handleClick, showDetail, setShowDetail, detailed
         <MovieDetail movie={detailedMovie} />
       ) : (
         <Grid container className={classes.searchContainer}>
-          <FindMovie handleSearch={handleSearch} />
+          <Search />
         </Grid>
       )}
     </Container>
@@ -53,7 +53,6 @@ function Header({ handleSearch, handleClick, showDetail, setShowDetail, detailed
 export default Header;
 
 Header.propTypes = {
-  handleSearch: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   detailedMovie: movieType,
   showDetail: PropTypes.bool.isRequired,

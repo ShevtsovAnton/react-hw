@@ -8,17 +8,22 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { useDispatch } from 'react-redux';
+import { deleteMovieRedux } from '../../store/actions/movie';
+import movieType from '../../utils/movie.type';
+
 import useStyles from './styles';
 
 export default function ModalMovieDeletion({
   openDeleteModal,
-  deleteMovie,
-  closeModalMovieDeletion
+  closeModalMovieDeletion,
+  selectedMovie
 }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   const handleConfirm = () => {
-    deleteMovie();
+    dispatch(deleteMovieRedux(selectedMovie.id));
     closeModalMovieDeletion();
   };
 
@@ -55,5 +60,9 @@ export default function ModalMovieDeletion({
 ModalMovieDeletion.propTypes = {
   closeModalMovieDeletion: PropTypes.func.isRequired,
   openDeleteModal: PropTypes.bool.isRequired,
-  deleteMovie: PropTypes.func.isRequired
+  selectedMovie: movieType
+};
+
+ModalMovieDeletion.defaultProps = {
+  selectedMovie: null
 };

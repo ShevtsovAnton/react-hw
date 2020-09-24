@@ -5,7 +5,8 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     display: 'block',
     maxWidth: '100%',
-    maxHeight: '400px'
+    height: '400px',
+    objectFit: 'cover'
   },
   main: {
     paddingTop: theme.spacing(7),

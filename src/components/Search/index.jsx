@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { useDispatch } from 'react-redux';
+
+import searchBy from '../../store/actions/search';
 import useStyles from './styles';
 
-export default function Search({ handleSearch }) {
+export default function Search() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [query, setQuery] = useState('');
+
   const search = () => {
-    handleSearch(query);
+    dispatch(searchBy(query));
     setQuery('');
   };
+
   const handleKeyDown = event => {
     if (event.key === 'Enter') {
       search();
@@ -48,7 +53,3 @@ export default function Search({ handleSearch }) {
     </>
   );
 }
-
-Search.propTypes = {
-  handleSearch: PropTypes.func.isRequired
-};

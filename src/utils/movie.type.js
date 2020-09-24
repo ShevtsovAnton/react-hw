@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 
 const movieType = PropTypes.shape({
-  backdropPath: PropTypes.string,
-  duration: PropTypes.number,
+  runtime: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.string),
   id: PropTypes.number,
   mediaType: PropTypes.string,
-  movieUrl: PropTypes.string,
   overview: PropTypes.string,
-  posterPath: PropTypes.string,
-  releaseDate: PropTypes.string,
+  poster_path: PropTypes.string,
+  release_date: PropTypes.string,
   title: PropTypes.string,
-  voteAverage: PropTypes.number
+  vote_average: PropTypes.number
 });
 
 export default movieType;

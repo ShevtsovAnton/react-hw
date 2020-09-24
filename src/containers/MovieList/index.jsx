@@ -15,25 +15,20 @@ import getCountMessage from './helpers';
 import movieType from '../../utils/movie.type';
 
 export default function MovieList({
-  movies,
-  handleSort,
-  handleFilter,
   setIsEditMode,
   isEditMode,
   setOpenAddEditModal,
   openAddEditModal,
   setOpenDeleteModal,
   openDeleteModal,
-  deleteMovie,
   setSelectedMovie,
   selectedMovie,
-  editMovie,
-  addMovie,
   setShowDetail,
-  setDetailedMovie
+  setDetailedMovie,
+  movieIds
 }) {
   const classes = useStyles();
-  const countMessage = getCountMessage(movies);
+  const countMessage = getCountMessage(movieIds);
 
   const closeModalMovieDeletion = useCallback(() => {
     setOpenDeleteModal(false);
@@ -43,17 +38,17 @@ export default function MovieList({
   return (
     <Container className={classes.main} maxWidth="lg">
       <Grid className={classes.controlGrid} container justify="space-between">
-        <Filter handleFilter={handleFilter} />
-        <Sort handleSort={handleSort} />
+        <Filter />
+        <Sort />
       </Grid>
       <Typography variant="h6" className={classes.found}>
         {countMessage}
       </Typography>
       <Grid container spacing={4}>
-        {movies.map(movie => (
-          <Grid item key={movie.id} xs={12} sm={6} md={4}>
+        {movieIds.map(id => (
+          <Grid item key={id} xs={12} sm={6} md={4}>
             <MovieItem
-              movie={movie}
+              id={id}
               setIsEditMode={setIsEditMode}
               setOpenAddEditModal={setOpenAddEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
@@ -67,38 +62,31 @@ export default function MovieList({
       <ModalMovieDeletion
         openDeleteModal={openDeleteModal}
         closeModalMovieDeletion={closeModalMovieDeletion}
-        deleteMovie={deleteMovie}
+        selectedMovie={selectedMovie}
       />
       <AddEditDialog
         isEditMode={isEditMode}
         openAddEditModal={openAddEditModal}
         setOpenAddEditModal={setOpenAddEditModal}
         selectedMovie={selectedMovie}
-        editMovie={editMovie}
         setSelectedMovie={setSelectedMovie}
-        addMovie={addMovie}
       />
     </Container>
   );
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(movieType).isRequired,
-  handleSort: PropTypes.func.isRequired,
-  handleFilter: PropTypes.func.isRequired,
   setIsEditMode: PropTypes.func.isRequired,
   openAddEditModal: PropTypes.bool.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
   openDeleteModal: PropTypes.bool.isRequired,
-  deleteMovie: PropTypes.func.isRequired,
   selectedMovie: movieType,
   setSelectedMovie: PropTypes.func.isRequired,
-  editMovie: PropTypes.func.isRequired,
-  addMovie: PropTypes.func.isRequired,
   setShowDetail: PropTypes.func.isRequired,
-  setDetailedMovie: PropTypes.func.isRequired
+  setDetailedMovie: PropTypes.func.isRequired,
+  movieIds: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 
 MovieList.defaultProps = {
