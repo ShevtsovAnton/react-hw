@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -14,12 +18,13 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { useDispatch } from 'react-redux';
-import { addMovie, editMovie } from '../../store/actions/movie';
 
+import { addMovie, editMovie } from '../../store/actions/movie';
 import useStyles from './styles';
 import { genres, defaultMovie } from '../../utils/misc';
 import movieType from '../../utils/movie.type';
+import FormikField from '../FormikField';
+import FormikSelect from '../FormikSelect';
 
 function AddEditDialog({
   selectedMovie,
@@ -81,104 +86,130 @@ function AddEditDialog({
             <CloseIcon />
           </IconButton>
           <DialogContent>
-            <form className={classes.root} noValidate autoComplete="off">
-              {isEditMode ? (
-                <TextField
+            <Formik
+              initialValues={{
+                title: '',
+                release_date: '',
+                movieUrl: '',
+                genres: [],
+                overview: '',
+                runtime: 0,
+                test: ''
+              }}
+              validationSchema={Yup.object({
+                test: Yup.string().max(4, 'Must be 4 characters or less')
+              })}
+              onSubmit={values => {
+                setTimeout(() => {
+                  alert(JSON.stringify(values, null, 2));
+                }, 400);
+              }}
+            >
+              <Form className={classes.root} autoComplete="off">
+                {isEditMode ? (
+                  <FormikField
+                    name="id"
+                    className={classes.field}
+                    label="MOVIE ID"
+                    InputLabelProps={{
+                      style: { color: '#f65261' }
+                    }}
+                    type="text"
+                    value={selectedMovie.id ? selectedMovie.id : ''}
+                    fullWidth
+                    disabled
+                  />
+                ) : null}
+
+                <FormikField
+                  name="title"
                   className={classes.field}
-                  label="MOVIE ID"
+                  label="TITLE"
                   InputLabelProps={{
                     style: { color: '#f65261' }
                   }}
                   type="text"
-                  value={selectedMovie.id ? selectedMovie.id : ''}
+                  value={selectedMovie.title}
                   fullWidth
-                  disabled
+                  onChange={e => handleChange(e, 'title')}
                 />
-              ) : null}
-
-              <TextField
-                className={classes.field}
-                label="TITLE"
-                InputLabelProps={{
-                  style: { color: '#f65261' }
-                }}
-                type="text"
-                value={selectedMovie.title}
-                fullWidth
-                onChange={e => handleChange(e, 'title')}
-              />
-              <TextField
-                className={classes.field}
-                label="RELEASE DATE"
-                InputLabelProps={{
-                  style: { color: '#f65261' },
-                  shrink: true
-                }}
-                type="date"
-                value={selectedMovie.release_date}
-                fullWidth
-                onChange={e => handleChange(e, 'release_date')}
-              />
-              <TextField
-                className={classes.field}
-                label="MOVIE URL"
-                InputLabelProps={{
-                  style: { color: '#f65261' }
-                }}
-                type="text"
-                value={selectedMovie.poster_path}
-                fullWidth
-                onChange={e => handleChange(e, 'movieUrl')}
-              />
-              <FormControl className={classes.select}>
-                <InputLabel id="genres" className={classes.label}>
-                  GENRES
-                </InputLabel>
-                <Select
-                  labelId="genres"
-                  id="genres__select"
-                  multiple
-                  value={selectedMovie.genres}
-                  onChange={handleGenres}
-                  input={<Input id="select__multiple" />}
-                  renderValue={selected => (
-                    <div>
-                      {selected.map(value => (
-                        <Chip key={value} label={value} />
-                      ))}
-                    </div>
-                  )}
-                >
-                  {genres.map(genre => (
-                    <MenuItem key={genre} value={genre}>
-                      {genre}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <TextField
-                className={classes.field}
-                label="OVERVIEW"
-                InputLabelProps={{
-                  style: { color: '#f65261' }
-                }}
-                type="text"
-                value={selectedMovie.overview}
-                onChange={e => handleChange(e, 'overview')}
-                fullWidth
-              />
-              <TextField
-                className={classes.field}
-                label="RUNTIME"
-                InputLabelProps={{
-                  style: { color: '#f65261' }
-                }}
-                type="number"
-                value={selectedMovie.runtime}
-                onChange={e => handleChange(e, 'runtime')}
-                fullWidth
-              />
-            </form>
+                <FormikField
+                  name="release_date"
+                  className={classes.field}
+                  label="RELEASE DATE"
+                  InputLabelProps={{
+                    style: { color: '#f65261' },
+                    shrink: true
+                  }}
+                  type="date"
+                  value={selectedMovie.release_date}
+                  fullWidth
+                  onChange={e => handleChange(e, 'release_date')}
+                />
+                <FormikField
+                  name="movieUrl"
+                  className={classes.field}
+                  label="MOVIE URL"
+                  InputLabelProps={{
+                    style: { color: '#f65261' }
+                  }}
+                  type="text"
+                  value={selectedMovie.poster_path}
+                  fullWidth
+                  onChange={e => handleChange(e, 'movieUrl')}
+                />
+                <FormikSelect name="GENRES" items={genres}></FormikSelect>
+                <FormControl className={classes.select}>
+                  <InputLabel id="genres" className={classes.label}>
+                    GENRES
+                  </InputLabel>
+                  <Select
+                    labelId="genres"
+                    id="genres__select"
+                    multiple
+                    value={selectedMovie.genres}
+                    onChange={handleGenres}
+                    input={<Input id="select__multiple" />}
+                    renderValue={selected => (
+                      <div>
+                        {selected.map(value => (
+                          <Chip key={value} label={value} />
+                        ))}
+                      </div>
+                    )}
+                  >
+                    {genres.map(genre => (
+                      <MenuItem key={genre} value={genre}>
+                        {genre}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <TextField
+                  className={classes.field}
+                  label="OVERVIEW"
+                  InputLabelProps={{
+                    style: { color: '#f65261' }
+                  }}
+                  type="text"
+                  value={selectedMovie.overview}
+                  onChange={e => handleChange(e, 'overview')}
+                  fullWidth
+                />
+                <TextField
+                  className={classes.field}
+                  label="RUNTIME"
+                  InputLabelProps={{
+                    style: { color: '#f65261' }
+                  }}
+                  type="number"
+                  value={selectedMovie.runtime}
+                  onChange={e => handleChange(e, 'runtime')}
+                  fullWidth
+                />
+                <FormikField name="test" label="test" />
+              </Form>
+            </Formik>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleReset} color="primary">
