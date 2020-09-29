@@ -8,14 +8,14 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
+// import InputLabel from '@material-ui/core/InputLabel';
+// import Input from '@material-ui/core/Input';
 import TextField from '@material-ui/core/TextField';
-import Chip from '@material-ui/core/Chip';
+// import Chip from '@material-ui/core/Chip';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Select from '@material-ui/core/Select';
+// import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -35,6 +35,7 @@ function AddEditDialog({
 }) {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const formRef = useRef();
   const handleReset = () => {
     setSelectedMovie({
       ...defaultMovie
@@ -97,12 +98,12 @@ function AddEditDialog({
                 test: ''
               }}
               validationSchema={Yup.object({
-                test: Yup.string().max(4, 'Must be 4 characters or less')
+                title: Yup.string()
+                  .max(4, 'Must be 4 characters or less')
+                  .required()
               })}
               onSubmit={values => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                }, 400);
+                console.log(values);
               }}
             >
               <Form className={classes.root} autoComplete="off">
@@ -111,9 +112,6 @@ function AddEditDialog({
                     name="id"
                     className={classes.field}
                     label="MOVIE ID"
-                    InputLabelProps={{
-                      style: { color: '#f65261' }
-                    }}
                     type="text"
                     value={selectedMovie.id ? selectedMovie.id : ''}
                     fullWidth
@@ -125,9 +123,6 @@ function AddEditDialog({
                   name="title"
                   className={classes.field}
                   label="TITLE"
-                  InputLabelProps={{
-                    style: { color: '#f65261' }
-                  }}
                   type="text"
                   value={selectedMovie.title}
                   fullWidth
@@ -137,10 +132,6 @@ function AddEditDialog({
                   name="release_date"
                   className={classes.field}
                   label="RELEASE DATE"
-                  InputLabelProps={{
-                    style: { color: '#f65261' },
-                    shrink: true
-                  }}
                   type="date"
                   value={selectedMovie.release_date}
                   fullWidth
@@ -150,16 +141,20 @@ function AddEditDialog({
                   name="movieUrl"
                   className={classes.field}
                   label="MOVIE URL"
-                  InputLabelProps={{
-                    style: { color: '#f65261' }
-                  }}
                   type="text"
                   value={selectedMovie.poster_path}
                   fullWidth
                   onChange={e => handleChange(e, 'movieUrl')}
                 />
-                <FormikSelect name="GENRES" items={genres}></FormikSelect>
-                <FormControl className={classes.select}>
+                <FormikSelect
+                  name="GENRES"
+                  value={selectedMovie.genres}
+                  genres={genres}
+                  label="GENRES"
+                  onChange={handleGenres}
+                  className={classes.select}
+                />
+                {/* <FormControl className={classes.select}>
                   <InputLabel id="genres" className={classes.label}>
                     GENRES
                   </InputLabel>
@@ -184,7 +179,7 @@ function AddEditDialog({
                       </MenuItem>
                     ))}
                   </Select>
-                </FormControl>
+                </FormControl> */}
                 <TextField
                   className={classes.field}
                   label="OVERVIEW"
