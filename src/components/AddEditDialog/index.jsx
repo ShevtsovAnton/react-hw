@@ -87,48 +87,40 @@ function AddEditDialog({
           onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
-          {() => {
-            return (
-              <Dialog
-                open={openAddEditModal}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <Form className={classes.root} autoComplete="off">
-                  <DialogTitle id="alert-dialog-title">
-                    {isEditMode ? 'EDIT MOVIE' : 'ADD MOVIE'}
-                  </DialogTitle>
-                  <IconButton
-                    aria-label="close"
-                    className={classes.closeButton}
-                    onClick={handleClose}
-                  >
-                    <CloseIcon />
-                  </IconButton>
-                  <DialogContent>
-                    {isEditMode ? (
-                      <FormikField name="id" label="MOVIE ID" type="text" fullWidth disabled />
-                    ) : null}
-                    <FormikField name="title" label="TITLE" type="text" fullWidth />
-                    <FormikField name="release_date" label="RELEASE DATE" type="date" fullWidth />
-                    <FormikField name="poster_path" label="MOVIE URL" type="text" fullWidth />
-                    <FormikSelect name="genres" genres={genres} label="GENRES" />
-                    <FormikField name="overview" label="OVERVIEW" type="text" fullWidth />
-                    <FormikFieldUsingHook name="runtime" label="RUNTIME" type="number" fullWidth />
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={handleReset} color="primary">
-                      RESET
-                    </Button>
-                    <Button type="submit" color="primary" autoFocus>
-                      SUBMIT
-                    </Button>
-                  </DialogActions>
-                </Form>
-              </Dialog>
-            );
-          }}
+          <Dialog
+            open={openAddEditModal}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <Form className={classes.root} autoComplete="off">
+              <DialogTitle id="alert-dialog-title">
+                {isEditMode ? 'EDIT MOVIE' : 'ADD MOVIE'}
+              </DialogTitle>
+              <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+                <CloseIcon />
+              </IconButton>
+              <DialogContent>
+                {isEditMode ? (
+                  <FormikField name="id" label="MOVIE ID" type="text" fullWidth disabled />
+                ) : null}
+                <FormikField name="title" label="TITLE" type="text" fullWidth />
+                <FormikField name="release_date" label="RELEASE DATE" type="date" fullWidth />
+                <FormikField name="poster_path" label="MOVIE URL" type="text" fullWidth />
+                <FormikSelect name="genres" genres={genres} label="GENRES" />
+                <FormikField name="overview" label="OVERVIEW" type="text" fullWidth />
+                <FormikFieldUsingHook name="runtime" label="RUNTIME" type="number" fullWidth />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleReset} color="primary">
+                  RESET
+                </Button>
+                <Button type="submit" color="primary" autoFocus>
+                  SUBMIT
+                </Button>
+              </DialogActions>
+            </Form>
+          </Dialog>
         </Formik>
       ) : (
         ''
