@@ -11,24 +11,11 @@ import Input from '@material-ui/core/Input';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import useStyles from './styles';
 
-// import TextField from '@material-ui/core/TextField';
-
-const MaterialUISelectField = ({
-  errorString,
-  label,
-  children,
-  value,
-  name,
-  onChange,
-  onBlur,
-  required
-}) => {
+const MaterialUISelectField = ({ errorString, label, children, value, name, onChange, onBlur }) => {
   const classes = useStyles();
   return (
     <FormControl className={classes.select} fullWidth>
-      {/* <FormControl fullWidth> */}
-      {/* <InputLabel required={required} id="genres" className={classes.label}> */}
-      <InputLabel required={required} id="genres">
+      <InputLabel id="genres" shrink>
         {label}
       </InputLabel>
       <Select
@@ -59,7 +46,6 @@ MaterialUISelectField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.arrayOf(PropTypes.string),
-  required: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
   errorString: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -68,11 +54,10 @@ MaterialUISelectField.propTypes = {
 
 MaterialUISelectField.defaultProps = {
   errorString: '',
-  required: false,
   value: []
 };
 
-const FormikSelect = ({ name, value, label, required, genres, onChange }) => {
+const FormikSelect = ({ name, label, genres }) => {
   return (
     <div>
       <Field
@@ -80,9 +65,6 @@ const FormikSelect = ({ name, value, label, required, genres, onChange }) => {
         as={MaterialUISelectField}
         label={label}
         errorString={<ErrorMessage name={name} />}
-        required={required}
-        value={value}
-        onChange={onChange}
       >
         {genres.map(genre => (
           <MenuItem key={genre} value={genre}>
@@ -94,18 +76,10 @@ const FormikSelect = ({ name, value, label, required, genres, onChange }) => {
   );
 };
 
-FormikSelect.defaultProps = {
-  required: true,
-  value: []
-};
-
 FormikSelect.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.arrayOf(PropTypes.string),
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  required: PropTypes.bool,
-  onChange: PropTypes.func.isRequired
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default FormikSelect;
