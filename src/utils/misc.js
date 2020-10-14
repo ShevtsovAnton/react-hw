@@ -1,4 +1,15 @@
-export const genres = ['Comedy', 'Thriller', 'Drama', 'Romance', 'Documentary', 'Action', 'Horror'];
+export const genres = [
+  'Comedy',
+  'Thriller',
+  'Drama',
+  'Romance',
+  'Documentary',
+  'Action',
+  'Horror',
+  'Fantasy',
+  'Science Fiction',
+  'Adventure'
+];
 
 export const defaultMovie = {
   title: '',
