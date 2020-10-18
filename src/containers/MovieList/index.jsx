@@ -23,8 +23,6 @@ export default function MovieList({
   openDeleteModal,
   setSelectedMovie,
   selectedMovie,
-  setShowDetail,
-  setDetailedMovie,
   movieIds
 }) {
   const classes = useStyles();
@@ -53,8 +51,6 @@ export default function MovieList({
               setOpenAddEditModal={setOpenAddEditModal}
               setOpenDeleteModal={setOpenDeleteModal}
               setSelectedMovie={setSelectedMovie}
-              setShowDetail={setShowDetail}
-              setDetailedMovie={setDetailedMovie}
             />
           </Grid>
         ))}
@@ -84,8 +80,6 @@ MovieList.propTypes = {
   openDeleteModal: PropTypes.bool.isRequired,
   selectedMovie: movieType,
   setSelectedMovie: PropTypes.func.isRequired,
-  setShowDetail: PropTypes.func.isRequired,
-  setDetailedMovie: PropTypes.func.isRequired,
   movieIds: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 

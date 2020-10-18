@@ -1,5 +1,8 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import IconButton from '@material-ui/core/IconButton';
 import CardHeader from '@material-ui/core/CardHeader';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -10,20 +13,19 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
-import { useSelector } from 'react-redux';
 import useStyles from './styles';
 import { imageFallbackSrc } from '../../utils/misc';
+import { showMovieDetails } from '../../store/actions/movie';
 
 export default function MovieItem({
   id,
   setIsEditMode,
   setOpenAddEditModal,
   setOpenDeleteModal,
-  setSelectedMovie,
-  setShowDetail,
-  setDetailedMovie
+  setSelectedMovie
 }) {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const movie = useSelector(state => state.movies.filter(movieItem => movieItem.id === id)[0]);
   const { title, release_date, genres, poster_path } = movie;
   const releaseYear = release_date.substr(0, 4);
@@ -57,8 +59,7 @@ export default function MovieItem({
       top: 0,
       behavior: 'smooth'
     });
-    setDetailedMovie(movie);
-    setShowDetail(true);
+    dispatch(showMovieDetails(movie.id));
   }, [movie]);
 
   const handleImageError = e => {
@@ -103,14 +104,16 @@ export default function MovieItem({
             </>
           }
         />
-        <CardMedia
-          component="img"
-          className={classes.cardMedia}
-          image={poster_path}
-          title="Image title"
-          onClick={handleImageClick}
-          onError={handleImageError}
-        />
+        <Link to={`/film/${id}`}>
+          <CardMedia
+            component="img"
+            className={classes.cardMedia}
+            image={poster_path}
+            title="Image title"
+            onClick={handleImageClick}
+            onError={handleImageError}
+          />
+        </Link>
         <CardContent className={classes.cardContent}>
           <div className={classes.titleAndYear}>
             <Typography variant="body1">{title}</Typography>
@@ -130,7 +133,5 @@ MovieItem.propTypes = {
   setIsEditMode: PropTypes.func.isRequired,
   setOpenAddEditModal: PropTypes.func.isRequired,
   setOpenDeleteModal: PropTypes.func.isRequired,
-  setSelectedMovie: PropTypes.func.isRequired,
-  setShowDetail: PropTypes.func.isRequired,
-  setDetailedMovie: PropTypes.func.isRequired
+  setSelectedMovie: PropTypes.func.isRequired
 };

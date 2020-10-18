@@ -2,9 +2,13 @@ import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { hot } from 'react-hot-loader';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 import HomePage from './pages/homePage';
 import ErrorBoundary from './components/ErrorBoundary';
+import NoMovieFound from './pages/NoMovieFound';
+import NotFound from './components/NotFound';
+import MovieDetail from './components/MovieDetail';
 
 const theme = createMuiTheme({
   palette: {
@@ -34,7 +38,19 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <ErrorBoundary>
-          <HomePage />
+          <Router>
+            <Switch>
+              <Route exact path="/" render={() => <Redirect to="/no-movie-found" />} />
+              <Route path="/home" exact component={HomePage} />
+              <Route path="/search" component={HomePage} />
+              <Route path="/no-movie-found" exact component={NoMovieFound} />
+              <Route path="/page-not-found" component={NotFound} />
+              <Route path="/film/:id">
+                <MovieDetail />
+              </Route>
+              <Route path="*" render={() => <Redirect to="/page-not-found" />} />
+            </Switch>
+          </Router>
         </ErrorBoundary>
       </ThemeProvider>
     </>
