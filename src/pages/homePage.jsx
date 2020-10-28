@@ -1,31 +1,36 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Route, useLocation } from 'react-router-dom';
 
 import MovieList from '../containers/MovieList';
 import Header from '../containers/Header';
 import Footer from '../containers/Footer';
+import MovieDetail from '../components/MovieDetail';
+
 import { defaultMovie } from '../utils/misc';
 import { getFilteredMoviesIds, getSearchedMoviesIds } from '../utils/selectors';
 import { getMovies } from '../store/actions/movies';
+import searchBy from '../store/actions/search';
 
 function HomePage() {
   const [isEditMode, setIsEditMode] = useState(false);
   const [openAddEditModal, setOpenAddEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [showDetail, setShowDetail] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [detailedMovie, setDetailedMovie] = useState(null);
   const dispatch = useDispatch();
   const searchQuery = useSelector(state => state.searchQuery);
+  const location = useLocation();
+  const search = new URLSearchParams(location.search);
+  const query = search.get('query');
+  dispatch(searchBy(query));
 
   useEffect(() => {
     dispatch(getMovies());
   }, [dispatch]);
 
-  const movieIds =
-    searchQuery === ''
-      ? useSelector(state => getFilteredMoviesIds(state))
-      : useSelector(state => getSearchedMoviesIds(state));
+  const movieIds = !searchQuery
+    ? useSelector(state => getFilteredMoviesIds(state))
+    : useSelector(state => getSearchedMoviesIds(state));
 
   const openModalAddMovie = useCallback(() => {
     setSelectedMovie({ ...defaultMovie });
@@ -35,12 +40,12 @@ function HomePage() {
 
   return (
     <>
-      <Header
-        handleClick={openModalAddMovie}
-        showDetail={showDetail}
-        setShowDetail={setShowDetail}
-        detailedMovie={detailedMovie}
-      />
+      <Header handleClick={openModalAddMovie} />
+
+      <Route path="/film/:id">
+        <MovieDetail />
+      </Route>
+
       <MovieList
         movieIds={movieIds}
         isEditMode={isEditMode}
@@ -51,9 +56,6 @@ function HomePage() {
         setOpenDeleteModal={setOpenDeleteModal}
         selectedMovie={selectedMovie}
         setSelectedMovie={setSelectedMovie}
-        showDetail={showDetail}
-        setShowDetail={setShowDetail}
-        setDetailedMovie={setDetailedMovie}
       />
       <Footer />
     </>

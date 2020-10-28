@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 const getSortedMovies = (movies, sortBy) => {
   const sortedMovies = [
     ...movies.sort((a, b) => {
@@ -36,4 +38,17 @@ const getSearchedMovies = (movies, query) => {
   return searchResults;
 };
 
-export { getSortedMovies, getFilteredMovies, getSearchedMovies };
+const getMovie = id => {
+  console.log('SDFJSDF', id);
+  return useSelector(
+    state =>
+      state.movies.filter(movieItem => {
+        console.log(movieItem.id, id);
+        return movieItem.id === id;
+      })[0]
+  );
+};
+
+export default getMovie;
+
+export { getSortedMovies, getFilteredMovies, getSearchedMovies, getMovie };

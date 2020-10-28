@@ -69,3 +69,8 @@ export const deleteMovieRedux = id => {
       });
   };
 };
+
+export const showMovieDetails = id => ({
+  type: actions.SHOW_MOVIE_DETAILS,
+  payload: id
+});

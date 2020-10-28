@@ -3,18 +3,19 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { useDispatch } from 'react-redux';
-
-import searchBy from '../../store/actions/search';
+import { useHistory } from 'react-router-dom';
 import useStyles from './styles';
 
 export default function Search() {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const [query, setQuery] = useState('');
+  const history = useHistory();
 
   const search = () => {
-    dispatch(searchBy(query));
+    history.push({
+      pathname: '/search',
+      search: `?query=${query}`
+    });
     setQuery('');
   };
 

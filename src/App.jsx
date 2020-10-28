@@ -2,9 +2,10 @@ import React from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { hot } from 'react-hot-loader';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
-import HomePage from './pages/homePage';
 import ErrorBoundary from './components/ErrorBoundary';
+import createRoutes from './routes';
+
+const routes = createRoutes();
 
 const theme = createMuiTheme({
   palette: {
@@ -33,9 +34,7 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <ErrorBoundary>
-          <HomePage />
-        </ErrorBoundary>
+        <ErrorBoundary>{routes}</ErrorBoundary>
       </ThemeProvider>
     </>
   );

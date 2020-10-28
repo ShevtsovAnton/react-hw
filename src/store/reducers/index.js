@@ -5,7 +5,9 @@ const initialState = {
   sortBy: 'release_date',
   filterBy: 'all',
   searchQuery: '',
-  isLoading: false
+  isLoading: false,
+  detailedMovieId: '',
+  isMovieDetailsShown: false
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -70,6 +72,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: [...state.movies.filter(movie => movie.id !== action.payload)]
+      };
+
+    case actions.SHOW_MOVIE_DETAILS:
+      return {
+        ...state,
+        detailedMovieId: action.payload
+      };
+
+    case actions.TOGGLE_MOVIE_DETAILS:
+      return {
+        ...state,
+        isMovieDetailsShown: !state.isMovieDetailsShown
       };
 
     default:
