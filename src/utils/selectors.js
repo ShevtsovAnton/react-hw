@@ -18,3 +18,9 @@ export const getSearchedMoviesIds = createSelector(
   state => state.searchQuery,
   (sortedMovies, searchQuery) => getSearchedMovies(sortedMovies, searchQuery).map(movie => movie.id)
 );
+
+export const getMovie = createSelector(
+  state => state.movies,
+  state => state.detailedMovieId,
+  (movies, detailedMovieId) => movies.filter(movieItem => movieItem.id === detailedMovieId)[0]
+);
