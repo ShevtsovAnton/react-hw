@@ -23,7 +23,6 @@ function HomePage() {
   const search = new URLSearchParams(location.search);
   const query = search.get('query');
   dispatch(searchBy(query));
-  console.log('SEARCH', query);
 
   useEffect(() => {
     dispatch(getMovies());

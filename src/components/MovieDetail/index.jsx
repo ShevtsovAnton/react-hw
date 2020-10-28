@@ -11,7 +11,6 @@ export default function MovieDetail() {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams();
-  console.log(id, 'ID');
   const movie = useSelector(
     state => state.movies.filter(movieItem => movieItem.id === state.detailedMovieId)[0]
   );
