@@ -1,4 +1,5 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 import Header from '../../containers/Header';
 import Footer from '../../containers/Footer';
 import useStyles from './styles';
@@ -8,7 +9,9 @@ function NoMovieFound() {
   return (
     <>
       <Header />
-      <div className={classes.container}>No Movie Found</div>
+      <Container className={classes.container} maxWidth="lg">
+        No Movie Found
+      </Container>
       <Footer />
     </>
   );
