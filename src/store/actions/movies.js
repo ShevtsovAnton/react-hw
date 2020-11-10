@@ -20,7 +20,8 @@ export const getMoviesError = error => ({
 export const getMovies = () => {
   return dispatch => {
     dispatch(getMoviesRequest());
-    axios('http://localhost:4000/movies', { params: { limit: '15' } })
+    return axios
+      .get('http://localhost:4000/movies', { params: { limit: '15' } })
       .then(result => {
         const movies = result.data.data;
         dispatch(getMoviesSuccess(movies));

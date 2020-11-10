@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Field, ErrorMessage } from 'formik';
+import { Field } from 'formik';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -60,12 +60,7 @@ MaterialUISelectField.defaultProps = {
 const FormikSelect = ({ name, label, genres }) => {
   return (
     <div>
-      <Field
-        name={name}
-        as={MaterialUISelectField}
-        label={label}
-        errorString={<ErrorMessage name={name} />}
-      >
+      <Field name={name} as={MaterialUISelectField} label={label}>
         {genres.map(genre => (
           <MenuItem key={genre} value={genre}>
             {genre}

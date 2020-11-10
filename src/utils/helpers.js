@@ -39,11 +39,9 @@ const getSearchedMovies = (movies, query) => {
 };
 
 const getMovie = id => {
-  console.log('SDFJSDF', id);
   return useSelector(
     state =>
       state.movies.filter(movieItem => {
-        console.log(movieItem.id, id);
         return movieItem.id === id;
       })[0]
   );
