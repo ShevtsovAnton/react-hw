@@ -23,9 +23,7 @@ export const getMovies = () => {
     return axios
       .get('http://localhost:4000/movies', { params: { limit: '15' } })
       .then(result => {
-        console.log('RESULT', result);
         const movies = result.data.data;
-        console.log('RESULT2', movies);
         dispatch(getMoviesSuccess(movies));
       })
       .catch(error => {

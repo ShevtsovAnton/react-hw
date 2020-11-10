@@ -3,13 +3,13 @@ import { getSortedMovies, getFilteredMovies, getSearchedMovies } from './helpers
 
 const sortMovies = createSelector(
   state => state.movies,
-  state => state.sort,
-  (movies, sort) => getSortedMovies(movies, sort)
+  state => state.sortBy,
+  (movies, sortBy) => getSortedMovies(movies, sortBy)
 );
 
 export const getFilteredMoviesIds = createSelector(
   sortMovies,
-  state => state.app.filterBy,
+  state => state.filterBy,
   (sortedMovies, filterBy) => getFilteredMovies(sortedMovies, filterBy).map(movie => movie.id)
 );
 

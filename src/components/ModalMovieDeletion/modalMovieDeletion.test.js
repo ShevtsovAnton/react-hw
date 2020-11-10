@@ -1,12 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-// import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import ModalMovieDeletion from './index';
-
-// import userEvent from "@testing-library/user-event";
-// import {addFilm, loadFilms, setAddEditDialogOpen} from "../../../../store/slices";
 
 const mockDispatch = jest.fn();
 const closeModalMovieDeletion = jest.fn();

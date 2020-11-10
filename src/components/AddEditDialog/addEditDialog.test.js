@@ -14,9 +14,10 @@ const selectedMovie = {
 };
 const setSelectedMovie = jest.fn();
 const setOpenAddEditModal = jest.fn();
+const mockDispatch = jest.fn();
 
 jest.mock('react-redux', () => ({
-  useDispatch: () => jest.fn()
+  useDispatch: param => mockDispatch(param)
 }));
 
 describe('AddEditDialog', () => {
@@ -97,6 +98,8 @@ describe('AddEditDialog', () => {
     const submitButton = screen.getByText(/submit/i);
     expect(submitButton).toBeInTheDocument();
     userEvent.click(submitButton);
+    mockDispatch;
+    expect(mockDispatch).toHaveBeenCalled();
     expect(setOpenAddEditModal).toHaveBeenCalledWith(false);
   });
 });
