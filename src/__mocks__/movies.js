@@ -1,4 +1,4 @@
-const moviesList = [
+const movies = [
   {
     id: 605116,
     video: false,
@@ -202,4 +202,4 @@ const moviesList = [
   }
 ];
 
-export default moviesList;
+export default movies;

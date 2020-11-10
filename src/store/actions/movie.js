@@ -34,10 +34,10 @@ export const editMovieError = error => ({
   payload: error
 });
 
-export const editMovie = id => {
+export const editMovie = editedMovie => {
   return dispatch => {
     axios
-      .put('http://localhost:4000/movies', id)
+      .put('http://localhost:4000/movies', editedMovie)
       .then(response => {
         dispatch(editMovieSuccess(response.data));
       })

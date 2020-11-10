@@ -1,16 +1,15 @@
 import actions from '../actionTypes';
 
-const initialState = {
+export const initialState = {
   movies: [],
   sortBy: 'release_date',
   filterBy: 'all',
   searchQuery: '',
   isLoading: false,
-  detailedMovieId: '',
-  isMovieDetailsShown: false
+  detailedMovieId: ''
 };
 
-const rootReducer = (state = initialState, action) => {
+export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.GET_MOVIES_REQUEST:
       return {
@@ -80,15 +79,7 @@ const rootReducer = (state = initialState, action) => {
         detailedMovieId: action.payload
       };
 
-    case actions.TOGGLE_MOVIE_DETAILS:
-      return {
-        ...state,
-        isMovieDetailsShown: !state.isMovieDetailsShown
-      };
-
     default:
       return state;
   }
 };
-
-export default rootReducer;
