@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 import MovieList from '../../src/containers/MovieList';
 import Header from '../../src/containers/Header';
@@ -8,10 +9,12 @@ import MovieDetail from '../../src/components/MovieDetail';
 
 import { defaultMovie } from '../../src/utils/misc';
 import { getFilteredMoviesIds, getSearchedMoviesIds } from '../../src/utils/selectors';
-import { getMovies } from '../../src/store/actions/movies';
+import { getMovies, getMoviesSuccess } from '../../src/store/actions/movies';
 import searchBy from '../../src/store/actions/search';
 
 import { useRouter } from 'next/router';
+
+import { initializeStore } from '../../src/store';
 
 function Movies() {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -64,3 +67,14 @@ function Movies() {
 }
 
 export default Movies;
+
+export async function getServerSideProps() {
+  const reduxStore = initializeStore();
+  const { dispatch } = reduxStore;
+
+  const movies = await axios.get('http://localhost:4000/movies', { params: { limit: '15' } });
+
+  dispatch(getMoviesSuccess(movies.data.data));
+
+  return { props: { initialReduxState: reduxStore.getState() } };
+}

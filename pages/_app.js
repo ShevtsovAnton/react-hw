@@ -4,7 +4,7 @@ import Head from 'next/head';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import { useStore } from '../components/store';
+import { useStore } from '../src/store';
 import theme from '../utils/theme';
 
 export default function App({ Component, pageProps }) {
