@@ -1,5 +1,4 @@
 import actions from '../actionTypes';
-import { HYDRATE } from 'next-redux-wrapper';
 
 export const initialState = {
   movies: [],
@@ -12,9 +11,6 @@ export const initialState = {
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case HYDRATE:
-      return { ...state, ...action.payload };
-
     case actions.GET_MOVIES_REQUEST:
       return {
         ...state,

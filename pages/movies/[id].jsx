@@ -1,6 +1,9 @@
 import React from 'react';
 import MovieDetail from '../../src/components/MovieDetail';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import { initializeStore } from '../../src/store';
+import { getMovieDetailsSuccess } from '../../src/store/actions/movie';
 
 const details = () => {
   const router = useRouter();
@@ -14,10 +17,6 @@ const details = () => {
 };
 
 export default details;
-
-import axios from 'axios';
-import { initializeStore } from '../../src/store';
-import { getMovieDetailsSuccess } from '../../src/store/actions/movie';
 
 export async function getServerSideProps(context) {
   const reduxStore = initializeStore();

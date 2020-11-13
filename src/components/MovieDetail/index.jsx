@@ -5,11 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import useStyles from './styles';
-import { getMovie } from '../../utils/selectors';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-// import { getMovieDetails } from '../../components/store/actions/movie';
 import { getMovieDetails } from '../../store/actions/movie';
 
 export default function MovieDetail() {
