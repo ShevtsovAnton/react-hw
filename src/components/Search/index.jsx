@@ -3,18 +3,16 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import useStyles from './styles';
 
 export default function Search() {
   const classes = useStyles();
   const [query, setQuery] = useState('');
+  const router = useRouter();
 
   const search = () => {
-    Router.push({
-      pathname: '/movies',
-      query: { query: query }
-    });
+    router.push(`/movies?query=${query}`, `/movies/${query}`);
     setQuery('');
   };
 
