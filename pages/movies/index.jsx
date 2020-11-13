@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import MovieList from '../../components/MovieList';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import MovieDetail from '../../components/MovieDetail';
+import MovieList from '../../src/containers/MovieList';
+import Header from '../../src/containers/Header';
+import Footer from '../../src/containers/Footer';
+import MovieDetail from '../../src/components/MovieDetail';
 
 import { defaultMovie } from '../../src/utils/misc';
 import { getFilteredMoviesIds, getSearchedMoviesIds } from '../../src/utils/selectors';
-import { getMovies } from '../../components/store/actions/movies';
-import searchBy from '../../components/store/actions/search';
+import { getMovies } from '../../src/store/actions/movies';
+import searchBy from '../../src/store/actions/search';
 
 import { useRouter } from 'next/router';
 

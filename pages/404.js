@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Footer from '../components/Footer';
-import NotFound from '../components/NotFound';
+import Footer from '../src/containers/Footer';
+import NotFound from '../src/components/NotFound';
 
 function Page404() {
   return (

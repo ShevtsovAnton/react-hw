@@ -74,3 +74,31 @@ export const showMovieDetails = id => ({
   type: actions.SHOW_MOVIE_DETAILS,
   payload: id
 });
+
+export const getMovieDetailsSuccess = movie => ({
+  type: actions.GET_MOVIE_DETAILS_SUCCESS,
+  payload: movie
+});
+
+export const getMovieDetailsError = error => ({
+  type: actions.GET_MOVIE_DETAILS_ERROR,
+  payload: error
+});
+
+export const getMovieDetailsRequest = () => ({
+  type: actions.GET_MOVIE_DETAILS_REQUEST
+});
+
+export const getMovieDetails = id => {
+  return dispatch => {
+    dispatch(getMovieDetailsRequest());
+    return axios
+      .get(`http://localhost:4000/movies/${id}`)
+      .then(response => {
+        dispatch(getMovieDetailsSuccess(response.data));
+      })
+      .catch(error => {
+        dispatch(getMovieDetailsError(error));
+      });
+  };
+};
