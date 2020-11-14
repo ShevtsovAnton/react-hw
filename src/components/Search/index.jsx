@@ -3,18 +3,17 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { useHistory } from 'react-router-dom';
+import Router from 'next/router';
 import useStyles from './styles';
 
 export default function Search() {
   const classes = useStyles();
   const [query, setQuery] = useState('');
-  const history = useHistory();
 
   const search = () => {
-    history.push({
-      pathname: '/search',
-      search: `?query=${query}`
+    Router.push({
+      pathname: '/movies',
+      query: { query: query }
     });
     setQuery('');
   };

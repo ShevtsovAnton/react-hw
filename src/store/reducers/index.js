@@ -6,7 +6,7 @@ export const initialState = {
   filterBy: 'all',
   searchQuery: '',
   isLoading: false,
-  detailedMovieId: ''
+  detailedMovie: null
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -76,7 +76,26 @@ export const rootReducer = (state = initialState, action) => {
     case actions.SHOW_MOVIE_DETAILS:
       return {
         ...state,
-        detailedMovieId: action.payload
+        detailedMovie: action.payload
+      };
+
+    case actions.GET_MOVIE_DETAILS:
+      return {
+        ...state,
+        isLoading: true
+      };
+
+    case actions.GET_MOVIE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        detailedMovie: action.payload
+      };
+
+    case actions.GET_MOVIE_DETAILS_ERROR:
+      return {
+        ...state,
+        isLoading: false
       };
 
     default:

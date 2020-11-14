@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import IconButton from '@material-ui/core/IconButton';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -15,7 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CloseIcon from '@material-ui/icons/Close';
 import useStyles from './styles';
 import { imageFallbackSrc } from '../../utils/misc';
-import { showMovieDetails } from '../../store/actions/movie';
+import { getMovieDetails, showMovieDetails } from '../../store/actions/movie';
 
 export default function MovieItem({
   id,
@@ -59,7 +59,7 @@ export default function MovieItem({
       top: 0,
       behavior: 'smooth'
     });
-    dispatch(showMovieDetails(movie.id));
+    dispatch(getMovieDetails(movie.id));
   }, [movie]);
 
   const handleImageError = e => {
@@ -104,7 +104,7 @@ export default function MovieItem({
             </>
           }
         />
-        <Link to={`/film/${id}`}>
+        <Link href={`/movies/${id}`}>
           <CardMedia
             component="img"
             className={classes.cardMedia}
